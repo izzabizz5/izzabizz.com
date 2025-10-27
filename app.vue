@@ -14,9 +14,15 @@
 
     <div class="relative z-10">
       <main class="pt-20">
-        <transition name="page" mode="out-in">
-          <NuxtPage />
-        </transition>
+        <NuxtLayout>
+          <template #default>
+            <transition name="page" mode="out-in">
+              <div>
+                <NuxtPage />
+              </div>
+            </transition>
+          </template>
+        </NuxtLayout>
       </main>
       <Footer />
     </div>
@@ -33,11 +39,18 @@ import Iridescence from '@/components/Iridescence.vue'
 /* Smooth blur-based page transition (no white flash) */
 .page-enter-active,
 .page-leave-active {
-  transition: filter 0.2s linear;
+  transition: opacity 0.2s ease, filter 0.2s linear;
 }
 
 .page-enter-from,
 .page-leave-to {
+  opacity: 0;
   filter: blur(6px);
+}
+
+.page-enter-to,
+.page-leave-from {
+  opacity: 1;
+  filter: blur(0);
 }
 </style>

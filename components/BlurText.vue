@@ -1,21 +1,24 @@
 <template>
-  <p ref="rootRef" :class="['blur-text', className, 'flex', 'flex-wrap']">
-    <Motion
-      v-for="(segment, index) in elements"
-      :key="`${animationKey}-${index}`"
-      tag="span"
-      :initial="fromSnapshot"
-      :animate="inView ? getAnimateKeyframes() : fromSnapshot"
-      :transition="getTransition(index)"
-      :style="{
-        display: 'inline-block',
-        willChange: 'transform, filter, opacity'
-      }"
-    >
-      {{ segment === ' ' ? '\u00A0' : segment
-      }}{{ animateBy === 'words' && index < elements.length - 1 ? '\u00A0' : '' }}
-    </Motion>
-  </p>
+  <div ref="rootRef" :class="className">
+    <p class="blur-text flex flex-wrap">
+      <client-only>
+        <Motion
+          v-for="(segment, index) in elements"
+          :key="`${animationKey}-${index}`"
+          tag="span"
+          :initial="fromSnapshot"
+          :animate="inView ? getAnimateKeyframes() : fromSnapshot"
+          :transition="getTransition(index)"
+          :style="{
+            display: 'inline-block',
+            willChange: 'transform, filter, opacity'
+          }"
+        >
+          {{ segment === ' ' ? '\u00A0' : segment }}{{ animateBy === 'words' && index < elements.length - 1 ? '\u00A0' : '' }}
+        </Motion>
+      </client-only>
+    </p>
+  </div>
 </template>
 
 <script setup lang="ts">

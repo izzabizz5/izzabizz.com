@@ -14,17 +14,17 @@
       <nav
         class="hidden md:flex fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-10"
       >
-        <a
+        <NuxtLink
           v-for="link in links"
           :key="link.name"
-          :href="link.href"
+          :to="link.href"
           class="px-6 py-2 rounded-full border border-green-300/20 bg-[#0b2d2f]/40
                  hover:bg-[#0b2d2f]/70 hover:border-green-300/40
                  text-green-300 hover:text-green-100 transition-all duration-200
                  flex items-center justify-center"
         >
           {{ link.name }}
-        </a>
+        </NuxtLink>
       </nav>
 
       <!-- Right: Animated Uptime Indicator -->
