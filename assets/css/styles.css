@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General Styles */
+@font-face {
+  font-family: 'ttnp-round';
+  src: url(@/assets/fonts/ttnp-round.otf)format('opentype');
+}
+
+/* Hero Section */
+.text
+{
+  font-family: ttnp-round;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 2rem;
+  background-color: #70A37F; /* Cambridge Blue */
+  width: 100%;
+  box-sizing: border-box;
+  background-size: cover;
+}
+
+.hero-header {
+  font-size: 5rem!important;
+  font-weight: bold;
+  color: #f1f3f0!important; /* English Violet */
+  margin: 0 0 1rem;
+  font-family: ttnp-round;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f1f3f0!important;
+  margin: 0 0 1rem;
+  font-family: ttnp-round;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+}
