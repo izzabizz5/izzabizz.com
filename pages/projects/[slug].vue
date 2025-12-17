@@ -1,6 +1,11 @@
 <template>
   <div class="relative w-full min-h-screen">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
+    <!-- Animated background (z-0, always behind) -->
+    <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
+      <Iridescence />
+    </div>
+    <!-- Main content (z-10, always above background) -->
+    <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-6xl">
       <!-- Back Button -->
       <NuxtLink 
         to="/projects"
@@ -36,7 +41,7 @@
         </div>
 
         <!-- Project Content -->
-        <div v-else-if="project" class="prose prose-lg max-w-none">
+        <div v-else-if="project" class="prose prose-xl max-w-4xl mx-auto">
           <h1 class="text-4xl font-bold text-[#1b1740] mb-4">{{ project.title }}</h1>
           <div class="mb-8 text-gray-600">
             {{ new Date(project.createdAt).toLocaleDateString('en-US', { 
@@ -67,7 +72,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { marked } from 'marked'
 
 // Define page metadata for Nuxt
@@ -109,11 +114,32 @@ const fetchProject = async () => {
     if (!response.ok) throw new Error('Failed to fetch project data')
     
     const data = await response.json()
-    const foundProject = data.find(p => p.slug === route.params.slug)
+    
+    // Ensure data is an array
+    if (!Array.isArray(data)) {
+      throw new Error('Invalid data format received from API')
+    }
+    
+    // Normalize slugs for comparison (handle case sensitivity and whitespace)
+    const normalizedSlug = route.params.slug?.toString().toLowerCase().trim()
+    const foundProject = data.find(p => {
+      const projectSlug = p.slug?.toString().toLowerCase().trim()
+      return projectSlug === normalizedSlug
+    })
     
     if (foundProject) {
-      project.value = foundProject
+      // Transform the project data to match expected structure
+      project.value = {
+        title: foundProject.title,
+        content: foundProject.content,
+        slug: foundProject.slug,
+        createdAt: foundProject.createdAt,
+        excerpt: foundProject.excerpt
+      }
     } else {
+      // Log for debugging
+      console.warn('Project not found. Available slugs:', data.map(p => p.slug))
+      console.warn('Looking for slug:', normalizedSlug)
       throw new Error('Project not found')
     }
   } catch (err) {
@@ -143,8 +169,20 @@ watch(() => route.params.slug, (newSlug) => {
 </script>
 
 <style>
+/* Animated background should cover the whole page */
+.relative {
+  min-height: 100vh;
+  overflow: visible;
+}
+
 .prose {
   color: #1b1740;
+  max-width: 80ch;
+  line-height: 1.75;
+}
+
+.prose-xl {
+  font-size: 1.25rem;
 }
 
 .prose h1,
@@ -199,12 +237,6 @@ watch(() => route.params.slug, (newSlug) => {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* Additional styles for markdown content */
-.prose {
-  max-width: 65ch;
-  line-height: 1.75;
 }
 
 .prose p {
