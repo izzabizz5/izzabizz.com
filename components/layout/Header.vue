@@ -1,44 +1,46 @@
 <template>
   <header
-    class="w-full fixed top-0 left-0 z-50 bg-[#56727D]/80 backdrop-blur-lg border-b border-green-300/10"
+    class="w-full fixed top-0 left-0 z-50 bg-gradient-to-r from-[#1a3a52]/90 via-[#2c5270]/90 to-[#1a3a52]/90 backdrop-blur-xl border-b border-blue-200/20 shadow-lg shadow-black/20"
   >
     <div
-      class="relative flex items-center justify-between w-full px-6 py-4 text-green-300 font-mono lowercase"
+      class="flex items-center w-full px-6 py-4 text-blue-100 font-mono lowercase"
     >
-      <!-- Left: Logo -->
-      <div class="text-lg tracking-widest font-semibold select-none">
-        izzabizz_
+      <!-- Left: Logo (fixed width) -->
+      <div class="text-lg tracking-widest font-semibold select-none flex-shrink-0 w-48 hover:text-blue-100 transition-colors duration-300 cursor-default text-blue-100">
+        <span class="inline-block hover:animate-pulse">izzabizz_</span>
       </div>
 
-      <!-- Center: Navigation -->
+      <!-- Center: Navigation (grows to take available space) -->
       <nav
-        class="hidden md:flex fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-10"
+        class="hidden md:flex flex-1 items-center justify-center gap-10"
       >
         <NuxtLink
           v-for="link in links"
           :key="link.name"
           :to="link.href"
-          class="px-6 py-2 rounded-full border border-green-300/20 bg-[#0b2d2f]/40
-                 hover:bg-[#0b2d2f]/70 hover:border-green-300/40
-                 text-green-300 hover:text-green-100 transition-all duration-200
-                 flex items-center justify-center"
+          class="nav-link px-6 py-2 rounded-full border border-blue-200/30 bg-gradient-to-br from-[#2c5270]/50 to-[#1a3a52]/50
+                 hover:from-[#4a7a9e]/40 hover:to-[#2c5270]/70 hover:border-blue-200/60 hover:shadow-lg hover:shadow-blue-300/20
+                 text-blue-100 hover:text-white transition-all duration-300 ease-out
+                 flex items-center justify-center relative overflow-hidden
+                 hover:scale-105 active:scale-95"
         >
-          {{ link.name }}
+          <span class="relative z-10">{{ link.name }}</span>
+          <span class="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200/10 to-transparent translate-x-[-100%] hover-slide"></span>
         </NuxtLink>
       </nav>
 
-      <!-- Right: Animated Uptime Indicator -->
-      <div class="hidden md:flex items-center gap-2 text-sm text-green-300/80">
+      <!-- Right: Animated Uptime Indicator (fixed width) -->
+      <div class="hidden md:flex items-center gap-2 text-sm text-blue-100/80 flex-shrink-0 w-48 justify-end">
         <span class="opacity-80">uptime:</span>
-        <span class="text-green-200 font-semibold tabular-nums">{{ uptime }}</span>
+        <span class="text-blue-100 font-semibold tabular-nums px-2 py-1 rounded bg-blue-300/10 border border-blue-200/20">{{ uptime }}</span>
       </div>
 
       <!-- Mobile Hamburger -->
       <div class="flex items-center md:hidden ml-auto">
         <button
           @click="isOpen = !isOpen"
-          class="w-9 h-9 rounded-full border border-green-300/20 flex items-center justify-center
-                 hover:border-green-300/40 bg-[#56727D]/80 transition-all duration-200"
+          class="w-9 h-9 rounded-full border border-blue-200/20 flex items-center justify-center
+                 hover:border-blue-200/40 bg-[#2c5270]/80 transition-all duration-200"
         >
           <svg
             v-if="!isOpen"
@@ -47,7 +49,7 @@
             viewBox="0 0 24 24"
             stroke="currentColor"
             stroke-width="1.5"
-            class="w-5 h-5 text-green-300"
+            class="w-5 h-5 text-blue-100"
           >
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -58,7 +60,7 @@
             viewBox="0 0 24 24"
             stroke="currentColor"
             stroke-width="1.5"
-            class="w-5 h-5 text-green-300"
+            class="w-5 h-5 text-blue-100"
           >
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -70,14 +72,14 @@
     <transition name="fade">
       <nav
         v-if="isOpen"
-        class="md:hidden flex flex-col w-full items-start gap-4 pb-5 pt-2 bg-[#56727D]/80 border-t border-green-300/10 px-6"
+        class="md:hidden flex flex-col w-full items-start gap-4 pb-5 pt-2 bg-[#2c5270]/80 border-t border-blue-200/10 px-6"
       >
         <a
           v-for="link in links"
           :key="link.name"
           :href="link.href"
-          class="px-6 py-2 rounded-full border border-green-300/20 bg-[#0b2d2f]/40
-                 hover:border-green-300/40 hover:bg-[#56727D]/80 text-green-300 hover:text-green-100
+          class="px-6 py-2 rounded-full border border-blue-200/20 bg-[#2c5270]/40
+                 hover:border-blue-200/40 hover:bg-[#4a7a9e]/80 text-blue-100 hover:text-white
                  transition-all duration-200 w-full text-left"
         >
           {{ link.name }}
@@ -100,13 +102,36 @@ const links = [
 const uptime = ref("00:00:00");
 
 onMounted(() => {
-  const start = Date.now();
-  setInterval(() => {
-    const diff = Math.floor((Date.now() - start) / 1000);
-    const hrs = String(Math.floor(diff / 3600)).padStart(2, "0");
-    const mins = String(Math.floor((diff % 3600) / 60)).padStart(2, "0");
-    const secs = String(diff % 60).padStart(2, "0");
-    uptime.value = `${hrs}:${mins}:${secs}`;
-  }, 1000);
+  // Website launch date: October 27th, 2025
+  const launchDate = new Date('2025-10-27T00:00:00').getTime();
+  
+  const updateUptime = () => {
+    const diff = Math.floor((Date.now() - launchDate) / 1000);
+    const days = Math.floor(diff / 86400);
+    const hrs = Math.floor((diff % 86400) / 3600);
+    const mins = Math.floor((diff % 3600) / 60);
+    const secs = diff % 60;
+    
+    if (days > 0) {
+      uptime.value = `${days}d ${String(hrs).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    } else {
+      uptime.value = `${String(hrs).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+  };
+  
+  updateUptime();
+  setInterval(updateUptime, 1000);
 });
 </script>
+
+<style scoped>
+.nav-link:hover .hover-slide {
+  animation: slide 0.6s ease-out;
+}
+
+@keyframes slide {
+  to {
+    transform: translateX(200%);
+  }
+}
+</style>

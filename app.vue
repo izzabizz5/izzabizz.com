@@ -1,18 +1,16 @@
 <template>
-  <div id="app" class="min-h-screen relative overflow-hidden">
-    <!-- Iridescent Background -->
-    <Iridescence
-      class="absolute inset-0 -z-10"
-      :color="[0.6, 0.7, 0.5]"
-      :speed="0.2"
-      :amplitude="0.1"
-      :mouseReact="false"
+  <div id="app" class="min-h-screen relative">
+    <!-- Pixel Blast Background -->
+    <PixelBlast
+      :particle-count="2500"
+      :colors="['#FFFBA9']"
+      :speed="0.5"
     />
 
-    <!-- Foreground -->
-    <Header />
-
-    <div class="relative z-10">
+    <!-- Foreground Content -->
+    <div class="relative z-10 min-h-screen">
+      <Header />
+      
       <main class="pt-20">
         <NuxtLayout>
           <template #default>
@@ -32,7 +30,7 @@
 <script setup>
 import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
-import Iridescence from '@/components/Iridescence.vue'
+import PixelBlast from '@/components/PixelBlast.vue'
 </script>
 
 <style>

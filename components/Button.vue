@@ -4,8 +4,7 @@
     :href="href"
     :target="href ? '_blank' : null"
     :rel="href ? 'noopener noreferrer' : null"
-    class="relative inline-flex items-center justify-center p-5 rounded-full backdrop-blur-lg border border-white/10 bg-gradient-to-tr from-black/30 to-black/10 shadow-lg 
-           hover:shadow-2xl hover:shadow-white/20 hover:scale-110 hover:rotate-3 active:scale-95 active:rotate-0 transition-all duration-300 ease-out cursor-pointer overflow-hidden group"
+    class="button-fixed"
   >
     <!-- Animated overlay -->
     <span
@@ -24,3 +23,32 @@ defineProps({
   href: String
 });
 </script>
+
+<style scoped>
+.button-fixed {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to top right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+  flex-shrink: 0;
+}
+
+.button-fixed:hover {
+  box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.2);
+  transform: scale(1.1) rotate(3deg);
+}
+
+.button-fixed:active {
+  transform: scale(0.95) rotate(0deg);
+}
+</style>

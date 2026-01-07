@@ -1,8 +1,8 @@
 <template>
-  <div class="relative w-full min-h-screen overflow-visible">
-    <div class="flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 py-16">
+  <div class="relative w-full h-screen overflow-hidden">
+    <div class="flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 h-full" style="margin-top: -4rem;">
       <!-- Grid Wrapper -->
-      <div class="about-grid max-w-6xl w-full">
+      <div class="about-grid max-w-5xl w-full">
 
         <!-- Top -->
         <div class="about-card card-top">
@@ -22,7 +22,7 @@
           <BlurText
             text="About Me"
             :delay="200"
-            class-name="hero-header text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-[#1b1740]"
+            class-name="hero-header text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white"
             animate-by="words"
             direction="top"
             :threshold="0.1"
@@ -62,7 +62,7 @@
     "left center right-bottom"
     ". bottom bottom";
   grid-template-columns: 1fr 1.2fr 1fr;
-  gap: 2rem;
+  gap: 1rem;
   place-items: center;
 }
 
@@ -76,32 +76,35 @@
 
 /* Styling remains consistent */
 .about-card {
-  background-color: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(44, 82, 112, 0.4);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(173, 216, 230, 0.2);
   border-radius: 20px;
-  padding: 1.5rem;
-  color: #1b1740;
+  padding: 1rem;
+  color: #e8f4f8;
   text-align: left;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  font-size: 0.9rem;
 }
 
 .about-card:hover {
   transform: translateY(-5px);
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(74, 122, 158, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(135, 206, 250, 0.3);
+  border-color: rgba(173, 216, 230, 0.4);
   transition-duration: 700ms;
 }
 
 .project-link {
   font-weight: 600;
-  color: #1b1740;
-  border-bottom: 2px solid #53A275;
+  color: #87ceeb;
+  border-bottom: 2px solid #add8e6;
   text-decoration: none;
 }
 
 .project-link:hover {
-  color: #53A275;
-  border-color: #1b1740;
+  color: #ffffff;
+  border-color: #87ceeb;
 }
 
 /* Mobile-friendly stacking */

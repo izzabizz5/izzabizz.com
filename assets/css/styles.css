@@ -28,15 +28,15 @@
 .hero-header {
   font-size: 5rem!important;
   font-weight: bold;
-  color: #f1f3f0!important; /* English Violet */
+  color: #ffffff!important; /* White for starlight theme */
   margin: 0 0 1rem;
   font-family: ttnp-round;
 }
 
-h4 {
+.hero-header-small {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #f1f3f0!important;
+  color: #ffffff!important;
   margin: 0 0 1rem;
   font-family: ttnp-round;
 }

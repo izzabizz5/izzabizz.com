@@ -15,13 +15,6 @@ export default defineNuxtConfig({
       viteTsconfigPaths()
     ]
   },
-  nitro: {
-    routeRules: {
-      '/api/**': {
-        proxy: 'https://api.foligo.tech/api/**'
-      }
-    }
-  },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
