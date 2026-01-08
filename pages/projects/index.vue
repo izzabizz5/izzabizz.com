@@ -5,7 +5,7 @@
         <BlurText
           text="Projects"
           :delay="200"
-          class-name="hero-header text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-white text-center"
+          class-name="hero-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 text-white text-center"
           animate-by="words"
           direction="top"
           :threshold="0.1"
@@ -162,12 +162,12 @@ onMounted(() => {
 
 <style scoped>
 .project-card {
-  background-color: rgba(44, 82, 112, 0.4);
+  background-color: rgba(45, 53, 85, 0.4);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(173, 216, 230, 0.2);
+  border: 1px solid rgba(240, 231, 213, 0.2);
   border-radius: 20px;
   padding: 1.5rem;
-  color: #e8f4f8;
+  color: #F0E7D5;
   text-align: left;
   max-width: 90vw;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -175,21 +175,21 @@ onMounted(() => {
 }
 
 .project-card:hover {
-  background-color: rgba(74, 122, 158, 0.5);
-  box-shadow: 0 10px 30px -10px rgba(135, 206, 250, 0.3);
-  border-color: rgba(173, 216, 230, 0.4);
+  background-color: rgba(61, 74, 112, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(240, 231, 213, 0.3);
+  border-color: rgba(240, 231, 213, 0.4);
 }
 
 .project-link {
   font-weight: 600;
-  color: #87ceeb;
-  border-bottom: 2px solid #add8e6;
+  color: #F0E7D5;
+  border-bottom: 2px solid rgba(240, 231, 213, 0.6);
   text-decoration: none;
   transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .project-link:hover {
   color: #ffffff;
-  border-color: #87ceeb;
+  border-color: #F0E7D5;
 }
 </style>

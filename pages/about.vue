@@ -1,6 +1,6 @@
 <template>
-  <div class="relative w-full h-screen overflow-hidden">
-    <div class="flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 h-full" style="margin-top: -4rem;">
+  <div class="relative w-full min-h-screen overflow-y-auto">
+    <div class="flex flex-col items-center px-4 sm:px-6 md:px-8 py-24">
       <!-- Grid Wrapper -->
       <div class="about-grid max-w-5xl w-full">
 
@@ -22,7 +22,7 @@
           <BlurText
             text="About Me"
             :delay="200"
-            class-name="hero-header text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white"
+            class-name="hero-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
             animate-by="words"
             direction="top"
             :threshold="0.1"
@@ -74,14 +74,14 @@
 .card-bottom { grid-area: bottom; }
 .about-center { grid-area: center; display: flex; justify-content: center; align-items: center; }
 
-/* Styling remains consistent */
+/* Card styling */
 .about-card {
-  background-color: rgba(44, 82, 112, 0.4);
+  background-color: rgba(45, 53, 85, 0.4);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(173, 216, 230, 0.2);
+  border: 1px solid rgba(240, 231, 213, 0.2);
   border-radius: 20px;
   padding: 1rem;
-  color: #e8f4f8;
+  color: #F0E7D5;
   text-align: left;
   transition: transform 0.3s ease, background-color 0.3s ease;
   font-size: 0.9rem;
@@ -89,9 +89,9 @@
 
 .about-card:hover {
   transform: translateY(-5px);
-  background-color: rgba(74, 122, 158, 0.5);
-  box-shadow: 0 10px 30px -10px rgba(135, 206, 250, 0.3);
-  border-color: rgba(173, 216, 230, 0.4);
+  background-color: rgba(61, 74, 112, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(240, 231, 213, 0.3);
+  border-color: rgba(240, 231, 213, 0.4);
   transition-duration: 700ms;
 }
 
@@ -107,7 +107,7 @@
   border-color: #87ceeb;
 }
 
-/* Mobile-friendly stacking */
+/* Mobile stacking */
 @media (max-width: 768px) {
   .about-grid {
     grid-template-areas:
@@ -118,6 +118,11 @@
       "right-bottom"
       "bottom";
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .about-center {
+    margin-bottom: 0.5rem;
   }
 }
 </style>

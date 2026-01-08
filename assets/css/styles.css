@@ -2,43 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  overflow-x: hidden;
+  background-color: #212842;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #212842;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Font Face */
 @font-face {
   font-family: 'ttnp-round';
-  src: url(@/assets/fonts/ttnp-round.otf)format('opentype');
+  src: url(@/assets/fonts/ttnp-round.otf) format('opentype');
+  font-display: swap;
+}
+
+/* Text with custom font */
+.text {
+  font-family: ttnp-round, sans-serif;
 }
 
 /* Hero Section */
-.text
-{
-  font-family: ttnp-round;
-}
-
 .hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4rem 2rem;
-  background-color: #70A37F; /* Cambridge Blue */
+  padding: 2rem 1rem;
+  background-color: #70A37F;
   width: 100%;
   box-sizing: border-box;
   background-size: cover;
 }
 
+@media (min-width: 640px) {
+  .hero {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 4rem 2rem;
+  }
+}
+
+/* Hero Header - Responsive by default */
 .hero-header {
-  font-size: 5rem!important;
   font-weight: bold;
-  color: #ffffff!important; /* White for starlight theme */
+  color: #ffffff !important;
   margin: 0 0 1rem;
-  font-family: ttnp-round;
+  font-family: ttnp-round, sans-serif;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .hero-header-small {
-  font-size: 1.5rem;
   font-weight: bold;
-  color: #ffffff!important;
+  color: #ffffff !important;
   margin: 0 0 1rem;
-  font-family: ttnp-round;
+  font-family: ttnp-round, sans-serif;
 }
 
 /* Media Queries */

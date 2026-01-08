@@ -1,10 +1,10 @@
 <template>
-  <div class="relative w-full min-h-screen px-4 sm:px-6 md:px-8 py-24 flex flex-col items-center" style="margin-top: -3rem;">
-    <div class="container mx-auto max-w-4xl w-full">
+  <div class="relative w-full h-full px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 overflow-y-auto overflow-x-hidden" style="max-width: 100vw;">
+    <div class="container mx-auto max-w-4xl w-full" style="max-width: calc(100vw - 2rem);">
       <!-- Back Button -->
       <NuxtLink 
         to="/projects"
-        class="inline-flex items-center mb-8 text-blue-200 hover:text-white transition-colors duration-200"
+        class="inline-flex items-center mb-6 sm:mb-8 text-blue-200 hover:text-white transition-colors duration-200 touch-manipulation"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
@@ -37,8 +37,8 @@
 
         <!-- Project Content -->
         <div v-else-if="project" class="w-full">
-          <h1 class="hero-header-small text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 text-center">{{ project.title }}</h1>
-          <div class="mb-8 font-bold text-blue-200 text-center text-sm">
+          <h1 class="hero-header-small text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 text-center break-words">{{ project.title }}</h1>
+          <div class="mb-6 sm:mb-8 font-bold text-blue-200 text-center text-xs sm:text-sm">
             {{ new Date(project.createdAt).toLocaleDateString('en-US', { 
               year: 'numeric', 
               month: 'long', 
@@ -130,82 +130,6 @@ The event was a great success, with over 50 students participating and learning 
 - Smooth scroll animations
 - Project showcase
 - Interactive components`
-  },
-  {
-    title: 'Discord Bot',
-    description: 'A multi-purpose Discord bot with moderation and fun commands.',
-    slug: 'discord-bot',
-    createdAt: '2025-11-20',
-    content: `Created a versatile Discord bot for server management and entertainment.
-
-## Features
-
-- Moderation tools
-- Music player
-- Custom commands
-- Auto-moderation
-- Server statistics
-
-## Tech Used
-
-Built with Discord.js and Node.js, deployed on a VPS for 24/7 uptime.`
-  },
-  {
-    title: 'Web Scraper',
-    description: 'Python-based web scraper for data collection and analysis.',
-    slug: 'web-scraper',
-    createdAt: '2025-10-10',
-    content: `Developed a web scraping tool for automated data collection.
-
-## Capabilities
-
-- Multi-threaded scraping
-- Rate limiting
-- Data cleaning
-- Export to CSV/JSON
-- Proxy support
-
-## Technologies
-
-Built with Python using BeautifulSoup, requests, and pandas.`
-  },
-  {
-    title: 'Game Mod',
-    description: 'Custom game modification adding new features and gameplay mechanics.',
-    slug: 'game-mod',
-    createdAt: '2025-09-05',
-    content: `Created a popular mod for a video game that enhances gameplay.
-
-## What It Does
-
-- Adds new items
-- Custom quests
-- UI improvements
-- Performance optimizations
-
-## Reception
-
-Downloaded over 10,000 times with positive community feedback.`
-  },
-  {
-    title: 'Chat Application',
-    description: 'Real-time chat app with WebSocket support and modern UI.',
-    slug: 'chat-application',
-    createdAt: '2025-08-01',
-    content: `Built a real-time messaging application with modern features.
-
-## Key Features
-
-- WebSocket communication
-- User authentication
-- Private and group chats
-- Message history
-- Typing indicators
-- Online status
-
-## Built With
-
-Express.js, Socket.io, MongoDB, and React for the frontend.`
   }
 ]
 
@@ -277,19 +201,47 @@ watch(() => route.params.slug, (newSlug) => {
 
 <style>
 .content-card {
-  background-color: rgba(44, 82, 112, 0.4);
+  background-color: rgba(45, 53, 85, 0.4);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(173, 216, 230, 0.2);
-  border-radius: 20px;
-  padding: 2rem;
+  border: 1px solid rgba(240, 231, 213, 0.2);
+  border-radius: 16px;
+  padding: 1.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 640px) {
+  .content-card {
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .content-card {
+    padding: 2rem;
+    border-radius: 20px;
+  }
 }
 
 .project-content {
   color: #e8f4f8;
   line-height: 1.75;
-  font-size: 1.125rem;
+  font-size: 0.95rem;
   animation: fadeIn 0.5s ease-out;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 640px) {
+  .project-content {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .project-content {
+    font-size: 1.125rem;
+  }
 }
 
 @keyframes fadeIn {
@@ -306,27 +258,63 @@ watch(() => route.params.slug, (newSlug) => {
 .project-content h1 {
   color: #ffffff !important;
   font-weight: bold !important;
-  font-size: 2rem !important;
+  font-size: 1.5rem !important;
   margin-top: 2em !important;
   margin-bottom: 0.8em !important;
   line-height: 1.2 !important;
 }
 
+@media (min-width: 640px) {
+  .project-content h1 {
+    font-size: 1.75rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .project-content h1 {
+    font-size: 2rem !important;
+  }
+}
+
 .project-content h2 {
   color: #ffffff !important;
   font-weight: bold !important;
-  font-size: 1.6rem !important;
+  font-size: 1.25rem !important;
   margin-top: 1.8em !important;
   margin-bottom: 0.7em !important;
   line-height: 1.3 !important;
 }
 
+@media (min-width: 640px) {
+  .project-content h2 {
+    font-size: 1.4rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .project-content h2 {
+    font-size: 1.6rem !important;
+  }
+}
+
 .project-content h3 {
   color: #ffffff !important;
   font-weight: 600 !important;
-  font-size: 1.3rem !important;
+  font-size: 1.125rem !important;
   margin-top: 1.5em !important;
   margin-bottom: 0.6em !important;
+}
+
+@media (min-width: 640px) {
+  .project-content h3 {
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .project-content h3 {
+    font-size: 1.3rem !important;
+  }
 }
 
 .project-content h4,
@@ -359,15 +347,15 @@ watch(() => route.params.slug, (newSlug) => {
 }
 
 .project-content pre {
-  background-color: rgba(26, 58, 82, 0.6) !important;
-  border: 1px solid rgba(173, 216, 230, 0.3) !important;
+  background-color: rgba(26, 31, 53, 0.6) !important;
+  border: 1px solid rgba(240, 231, 213, 0.3) !important;
   border-radius: 0.5rem !important;
   padding: 1rem !important;
 }
 
 .project-content code {
-  color: #add8e6 !important;
-  background-color: rgba(26, 58, 82, 0.6) !important;
+  color: #F0E7D5 !important;
+  background-color: rgba(26, 31, 53, 0.6) !important;
   padding: 0.25rem !important;
   border-radius: 0.25rem !important;
 }

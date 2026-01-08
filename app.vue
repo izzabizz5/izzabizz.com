@@ -1,26 +1,21 @@
 <template>
-  <div id="app" class="min-h-screen relative">
-    <!-- Pixel Blast Background -->
-    <PixelBlast
-      :particle-count="2500"
-      :colors="['#FFFBA9']"
-      :speed="0.5"
+  <div id="app">
+    <PixelSnow
+      :colors="['#F0E7D5']"
+      :flakeSize="0.01"
+      :minFlakeSize="1.25"
+      :pixelResolution="200"
+      :speed="1.25"
+      :density="0.2"
+      :direction="125"
+      :brightness="3.5"
+      :depthFade="20"
+      :gamma="0.3"
     />
-
-    <!-- Foreground Content -->
-    <div class="relative z-10 min-h-screen">
+    <div class="content-wrapper">
       <Header />
-      
-      <main class="pt-20">
-        <NuxtLayout>
-          <template #default>
-            <transition name="page" mode="out-in">
-              <div>
-                <NuxtPage />
-              </div>
-            </transition>
-          </template>
-        </NuxtLayout>
+      <main>
+        <NuxtPage />
       </main>
       <Footer />
     </div>
@@ -30,25 +25,32 @@
 <script setup>
 import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
-import PixelBlast from '@/components/PixelBlast.vue'
+import PixelSnow from '@/components/PixelSnow.vue'
 </script>
 
 <style>
-/* Smooth blur-based page transition (no white flash) */
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.2s ease, filter 0.2s linear;
+#app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-  filter: blur(6px);
+.content-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.page-enter-to,
-.page-leave-from {
-  opacity: 1;
-  filter: blur(0);
+main {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 </style>

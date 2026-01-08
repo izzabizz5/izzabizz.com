@@ -1,12 +1,12 @@
 <template>
-  <div class="relative w-full min-h-screen overflow-visible flex items-center justify-center text-center px-4 sm:px-4 lg:px-8">
+  <div class="home-page">
     <client-only>
-      <div class="flex flex-col items-center">
+      <div class="home-content">
         <!-- Blurred Header Text -->
         <BlurText
           text="Hi, I'm Izzy!"
           :delay="200"
-          class-name="hero-header text-center sm:text-2xl lg:text-6xl font-bold mb-8 text-white"
+          class-name="hero-header text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 text-white"
           animate-by="words"
           direction="top"
           :threshold="0.1"
@@ -39,8 +39,28 @@ import Button from '@/components/Button.vue';
 </script>
 
 <style scoped>
-/* Optional: add spacing below hero text if needed */
+.home-page {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+}
+
 .hero-header {
   line-height: 1.2;
+  font-family: 'ttnp-round', sans-serif !important;
+  text-align: center;
 }
 </style>
