@@ -36,7 +36,7 @@
         </div>
 
         <!-- Project Content -->
-        <div v-else-if="project" class="w-full">
+        <div v-else-if="project" class="w-full flex flex-col items-center">
           <h1 class="hero-header-small text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 text-center break-words">{{ project.title }}</h1>
           <div class="mb-6 sm:mb-8 font-bold text-blue-200 text-center text-xs sm:text-sm">
             {{ new Date(project.createdAt).toLocaleDateString('en-US', { 
@@ -130,6 +130,35 @@ The event was a great success, with over 50 students participating and learning 
 - Smooth scroll animations
 - Project showcase
 - Interactive components`
+  },
+  {
+    title: 'Dish Decoder',
+    description: 'Extract only the good parts of a recipe webpage.',
+    slug: 'dish-decoder',
+    createdAt: 'Nov 2025',
+    content: `Tired of the ads and life stories? Me too.
+
+  So, I finally got around to building **Dish Decoder**. I made this because I was tired of trying to cook dinner and having to scroll through a 2,000-word essay about someone's childhood trip to Italy just to find out how much long I have to whip the whipping cream for a tiramisu recipe. 
+
+  ## What is it?
+  It’s a web app that takes a messy recipe URL and "decodes" it. It strips away all the ads, the giant high-res photos that take forever to load, and the life stories, leaving you with just the ingredients and the actual steps. 
+
+  ## Why I think it’s cool:
+  - **No Clutter:** It’s just the facts. Ingredients + Instructions. That’s it.
+  - **Grocery List Mode:** There’s a dedicated view that just shows the ingredients so you can use it while walking around the store without losing your mind.
+  - **Exporting:** If you’re like me and keep a digital cookbook in Notion or Obsidian, you can export the recipe as **Markdown**. You can also just grab a **PDF** if you’re old school and want to print it.
+  - **Dark Mode:** Because let’s be real, I’m usually cooking or coding at 11 PM and don’t want to be blinded by a white screen.
+
+  ## Nerd Stuff
+  I wanted to keep the vibes modern and fast, so here’s what I used:
+  - **Nuxt 3 & Vue:** My go-to for building stuff quickly. It’s super fast and handles the routing like a champ.
+  - **TypeScript:** Because I hate when my code breaks for no reason. Having types makes the whole dev process way less of a headache.
+  - **Tailwind CSS:** For styling. I can’t go back to regular CSS after this—it makes everything look clean with way less effort.
+  - **Docker:** I containerized the whole thing. It’s a bit of a flex, but it makes deploying it super easy and ensures it runs the same on my machine as it does on the server.
+  - **GitHub Actions:** Set up some CI/CD so every time I push code, it automatically checks if I broke anything.
+
+  ## Summary
+  It’s simple, it’s fast, and it saves me from reading about someone's "culinary journey" when I just want to make some tacos. Check out the repo if you want to see how the scraping logic works or if you want to run a local instance!`
   }
 ]
 
@@ -201,31 +230,33 @@ watch(() => route.params.slug, (newSlug) => {
 
 <style>
 .content-card {
-  background-color: rgba(45, 53, 85, 0.4);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(240, 231, 213, 0.2);
+  background-color: rgba(45, 53, 85, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(240, 231, 213, 0.15);
   border-radius: 16px;
-  padding: 1.25rem;
+  padding: 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
   .content-card {
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 18px;
   }
 }
 
 @media (min-width: 768px) {
   .content-card {
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 20px;
   }
 }
 
 .project-content {
-  color: #e8f4f8;
-  line-height: 1.75;
+  color: #F0E7D5;
+  line-height: 1.8;
   font-size: 0.95rem;
   animation: fadeIn 0.5s ease-out;
   word-wrap: break-word;
@@ -235,12 +266,7 @@ watch(() => route.params.slug, (newSlug) => {
 @media (min-width: 640px) {
   .project-content {
     font-size: 1rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .project-content {
-    font-size: 1.125rem;
+    line-height: 1.85;
   }
 }
 
@@ -258,62 +284,44 @@ watch(() => route.params.slug, (newSlug) => {
 .project-content h1 {
   color: #ffffff !important;
   font-weight: bold !important;
-  font-size: 1.5rem !important;
-  margin-top: 2em !important;
-  margin-bottom: 0.8em !important;
-  line-height: 1.2 !important;
+  font-size: 1.35rem !important;
+  margin-top: 1.75em !important;
+  margin-bottom: 0.75em !important;
+  line-height: 1.3 !important;
 }
 
 @media (min-width: 640px) {
   .project-content h1 {
-    font-size: 1.75rem !important;
-  }
-}
-
-@media (min-width: 768px) {
-  .project-content h1 {
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
   }
 }
 
 .project-content h2 {
   color: #ffffff !important;
   font-weight: bold !important;
-  font-size: 1.25rem !important;
-  margin-top: 1.8em !important;
-  margin-bottom: 0.7em !important;
-  line-height: 1.3 !important;
+  font-size: 1.15rem !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 0.6em !important;
+  line-height: 1.35 !important;
 }
 
 @media (min-width: 640px) {
   .project-content h2 {
-    font-size: 1.4rem !important;
-  }
-}
-
-@media (min-width: 768px) {
-  .project-content h2 {
-    font-size: 1.6rem !important;
+    font-size: 1.25rem !important;
   }
 }
 
 .project-content h3 {
   color: #ffffff !important;
   font-weight: 600 !important;
-  font-size: 1.125rem !important;
-  margin-top: 1.5em !important;
-  margin-bottom: 0.6em !important;
+  font-size: 1.05rem !important;
+  margin-top: 1.35em !important;
+  margin-bottom: 0.5em !important;
 }
 
 @media (min-width: 640px) {
   .project-content h3 {
-    font-size: 1.2rem !important;
-  }
-}
-
-@media (min-width: 768px) {
-  .project-content h3 {
-    font-size: 1.3rem !important;
+    font-size: 1.1rem !important;
   }
 }
 
@@ -366,28 +374,33 @@ watch(() => route.params.slug, (newSlug) => {
 }
 
 .project-content p {
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
 }
 
 .project-content img {
-  margin-top: 2em !important;
-  margin-bottom: 2em !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 1.5em !important;
   border-radius: 0.5rem !important;
+  max-width: 100% !important;
 }
 
 .project-content ul {
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
-  padding-left: 1.625em !important;
+  margin-top: 0.75em !important;
+  margin-bottom: 0.75em !important;
+  padding-left: 1.5em !important;
   list-style-type: disc !important;
 }
 
 .project-content ol {
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
-  padding-left: 1.625em !important;
+  margin-top: 0.75em !important;
+  margin-bottom: 0.75em !important;
+  padding-left: 1.5em !important;
   list-style-type: decimal !important;
+}
+
+.project-content li {
+  margin-bottom: 0.35em !important;
 }
 
 .project-content blockquote {

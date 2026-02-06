@@ -69,7 +69,7 @@ const projects = ref([
     title: 'CTFs for CCSO Intro GBM',
     description: 'Created custom Capture The Flag challenges for Penn State\'s Competitive Cyber Security Organization.',
     slug: 'ctfs-for-ccso-intro-gbm',
-    createdAt: 'Jan 2026',
+    createdAt: 'Aug 2025',
     content: `I created a series of custom Capture The Flag challenges for Penn State's Competitive Cyber Security Organization (CCSO) Introduction General Body Meeting.
 
 ## Overview
@@ -106,6 +106,37 @@ The event was a great success, with over 50 students participating and learning 
 - Project showcase
 - Interactive components`
   },
+  {
+    title: 'Dish Decoder',
+    description: 'Extract only the good parts of a recipe webpage.',
+    slug: 'dish-decoder',
+    createdAt: 'Nov 2025',
+    content: `Fun project that helps to pull only ingredients and instructions while also building a grocery list.
+
+  # Dish Decoder 🍳
+
+  So, I finally got around to building **Dish Decoder**. I made this because I was tired of trying to cook dinner and having to scroll through a 2,000-word essay about someone's childhood trip to Italy just to find out how much long I have to whip the whipping cream for a tiramisu recipe. 
+
+  ## What is it?
+  It’s a web app that takes a messy recipe URL and "decodes" it. It strips away all the ads, the giant high-res photos that take forever to load, and the life stories, leaving you with just the ingredients and the actual steps. 
+
+  ## Why I think it’s cool:
+  - **No Clutter:** It’s just the facts. Ingredients + Instructions. That’s it.
+  - **Grocery List Mode:** There’s a dedicated view that just shows the ingredients so you can use it while walking around the store without losing your mind.
+  - **Exporting:** If you’re like me and keep a digital cookbook in Notion or Obsidian, you can export the recipe as **Markdown**. You can also just grab a **PDF** if you’re old school and want to print it.
+  - **Dark Mode:** Because let’s be real, I’m usually cooking or coding at 11 PM and don’t want to be blinded by a white screen.
+
+  ## Nerd Stuff
+  I wanted to keep the vibes modern and fast, so here’s what I used:
+  - **Nuxt 3 & Vue:** My go-to for building stuff quickly. It’s super fast and handles the routing like a champ.
+  - **TypeScript:** Because I hate when my code breaks for no reason. Having types makes the whole dev process way less of a headache.
+  - **Tailwind CSS:** For styling. I can’t go back to regular CSS after this—it makes everything look clean with way less effort.
+  - **Docker:** I containerized the whole thing. It’s a bit of a flex, but it makes deploying it super easy and ensures it runs the same on my machine as it does on the server.
+  - **GitHub Actions:** Set up some CI/CD so every time I push code, it automatically checks if I broke anything.
+
+  ## Summary
+  It’s simple, it’s fast, and it saves me from reading about someone's "culinary journey" when I just want to make some tacos. Check out the repo if you want to see how the scraping logic works or if you want to run a local instance!`
+  }
   
 ])
 
