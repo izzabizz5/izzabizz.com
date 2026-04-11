@@ -1,83 +1,95 @@
 <template>
   <div class="noteables-page">
-    <!-- Header -->
-    <div class="header-section">
-      <BlurText
-        text="Noteables"
-        :delay="200"
-        class-name="page-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-white"
-        animate-by="words"
-        direction="top"
-        :threshold="0.1"
-        root-margin="0px"
-        :step-duration="0.4"
-      />
-      <p class="subtitle">Words that resonate</p>
-    </div>
 
-    <!-- Main Layout -->
-    <div class="main-layout">
-      <!-- Filter Sidebar (Left) -->
-      <aside class="filter-sidebar">
-        <div class="filter-header">Filter</div>
-        <ul class="filter-list">
-          <li
-            v-for="category in categories"
-            :key="category.id"
-          >
-            <button
-              :class="['filter-item', { active: activeFilter === category.id }]"
-              @click="activeFilter = category.id"
-            >
-              {{ category.name }}
-              <span class="count">{{ getCategoryCount(category.id) }}</span>
-            </button>
-          </li>
-        </ul>
-      </aside>
-      <!-- Quotes List (Center) -->
-      <div class="quotes-section">
-        <TransitionGroup name="quote-fade" tag="ul" class="quotes-list">
-          <li
-            v-for="quote in filteredQuotes"
-            :key="quote.id"
-            :class="['quote-item', `media-${quote.type}`]"
-          >
-            <div class="quote-content">
-              <blockquote class="quote-text">"{{ quote.text }}"</blockquote>
-              <div class="quote-attribution">
-                <span class="author">— {{ quote.author }}</span>
-                <span v-if="quote.source" class="source">, {{ quote.source }}</span>
-                <span class="media-type">[{{ quote.type }}]</span>
-              </div>
-            </div>
-          </li>
-        </TransitionGroup>
+    <span class="page-edge-label" aria-hidden="true">NOTEABLES · 00</span>
 
-        <!-- Empty State -->
-        <div v-if="filteredQuotes.length === 0" class="empty-state">
-          <p>No quotes in this category yet.</p>
+    <!-- AQUA-style page header -->
+    <div class="page-header">
+      <div class="header-left">
+        <h1 class="page-title">NOTEABLES<span class="title-dot">.</span></h1>
+        <div class="header-tags">
+          <span class="pill-tag">{{ quotes.length }} quotes</span>
+          <span class="deco-star">✦</span>
+          <span class="pill-tag">words that resonate</span>
         </div>
       </div>
-      <!-- Spacer (Right) - balances the filter sidebar -->
-      <div class="layout-spacer"></div>
+      <div class="header-right">
+        <span class="deco-cross">+</span>
+        <p class="header-desc">lines from books, music, articles, and films that stuck around long after i first read them.</p>
+      </div>
     </div>
+
+    <!-- Filter bar (AQUA pill style) -->
+    <div class="filter-bar">
+      <button
+        v-for="cat in categories"
+        :key="cat.id"
+        :class="['filter-pill', { active: activeFilter === cat.id }]"
+        @click="activeFilter = cat.id"
+      >
+        {{ cat.name }}
+        <span class="pill-count">{{ getCategoryCount(cat.id) }}</span>
+      </button>
+    </div>
+
+    <!-- Divider -->
+    <div class="section-divider">
+      <span class="div-line"></span>
+      <span class="div-label">{{ filteredQuotes.length }} results</span>
+      <span class="div-line"></span>
+    </div>
+
+    <!-- AQUA two-column quote grid -->
+    <TransitionGroup name="quote-fade" tag="div" class="quotes-grid">
+      <div
+        v-for="(quote, index) in filteredQuotes"
+        :key="quote.id"
+        class="quote-block"
+      >
+        <div class="quote-meta-row">
+          <span class="quote-index">//{{ String(index + 1).padStart(3, '0') }}</span>
+          <span :class="['quote-type-pill', `badge-${quote.type}`]">◈ {{ quote.type }}</span>
+        </div>
+
+        <blockquote class="quote-text">
+          <span class="open-mark">"</span>{{ quote.text }}<span class="close-mark">"</span>
+        </blockquote>
+
+        <div class="quote-attr">
+          <span class="attr-dash">—</span>
+          <span class="attr-author">{{ quote.author }}</span>
+          <span v-if="quote.source" class="attr-source">{{ quote.source }}</span>
+        </div>
+      </div>
+    </TransitionGroup>
+
+    <!-- Empty state -->
+    <div v-if="filteredQuotes.length === 0" class="empty-state">
+      <span class="empty-pill">no entries in this category</span>
+    </div>
+
+    <!-- Bottom mark -->
+    <div class="page-bottom">
+      <span class="bottom-deco">◈</span>
+      <span class="bottom-rule"></span>
+      <span class="bottom-label">izzabizz_ · noteables.log</span>
+    </div>
+
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import BlurText from '@/components/BlurText.vue'
 
 const activeFilter = ref('all')
 
 const categories = [
-  { id: 'all', name: 'All' },
-  { id: 'book', name: 'Books' },
+  { id: 'all',     name: 'All' },
+  { id: 'book',    name: 'Books' },
   { id: 'article', name: 'Articles' },
-  { id: 'music', name: 'Music' },
-  { id: 'film', name: 'Film & TV' },
-  { id: 'other', name: 'Other' },
+  { id: 'music',   name: 'Music' },
+  { id: 'film',    name: 'Film' },
+  { id: 'other',   name: 'Other' },
 ]
 
 const quotes = ref([
@@ -92,19 +104,19 @@ const quotes = ref([
     id: 2,
     text: "If there is any principle of the Constitution that more imperatively calls for attachment than any other it is the principle of free thought, not free thought for those who agree with us but freedom for the thought that we hate.",
     author: "Oliver Wendell Holmes, Jr.",
-    source: "A dissenting opinion in United States v. Schwimmer (1929)",
+    source: "United States v. Schwimmer (1929)",
     type: "other",
   },
   {
     id: 3,
-    text: "A man cannot directly choose his circumstances, but he can choose his thoughts, and so indirectly, yet surely, shape his circumstances",
+    text: "A man cannot directly choose his circumstances, but he can choose his thoughts, and so indirectly, yet surely, shape his circumstances.",
     author: "James Allen",
     source: "As a Man Thinketh",
     type: "book",
   },
   {
     id: 4,
-    text: "You never know just how you look through other people's eyes",
+    text: "You never know just how you look through other people's eyes.",
     author: "Butthole Surfers",
     source: "Pepper",
     type: "music",
@@ -126,341 +138,320 @@ const quotes = ref([
 ])
 
 const filteredQuotes = computed(() => {
-  if (activeFilter.value === 'all') {
-    return quotes.value
-  }
-  return quotes.value.filter(quote => quote.type === activeFilter.value)
+  if (activeFilter.value === 'all') return quotes.value
+  return quotes.value.filter(q => q.type === activeFilter.value)
 })
 
-const getCategoryCount = (categoryId) => {
-  if (categoryId === 'all') {
-    return quotes.value.length
-  }
-  return quotes.value.filter(quote => quote.type === categoryId).length
+const getCategoryCount = (id) => {
+  if (id === 'all') return quotes.value.length
+  return quotes.value.filter(q => q.type === id).length
 }
 </script>
 
 <style scoped>
 .noteables-page {
-  width: 100%;
-  min-height: 100%;
-  padding: 2rem 1.5rem 4rem;
-  overflow-y: auto;
+  position: relative;
+  width: calc(100% - 3rem);
+  max-width: 960px;
+  margin: 1.75rem auto 2.5rem;
+  border-radius: 14px;
+  padding: 1.75rem 2rem 3rem;
+  color: #F0E0FF;
+  background: rgba(20, 0, 16, 0.92);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(240, 220, 255, 0.10);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Header Section */
-.header-section {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding-top: 2rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.page-edge-label {
+  position: absolute;
+  top: 3.5rem;
+  right: 0.6rem;
+  transform: rotate(90deg);
+  transform-origin: right top;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.48rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(240, 220, 255, 0.18);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
 }
+
+/* ── Page header ──────────────────────────────────────── */
+.page-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 1.75rem;
+}
+
+.header-left { display: flex; flex-direction: column; gap: 0.75rem; }
 
 .page-title {
-  font-family: 'ttnp-round', sans-serif !important;
-  line-height: 1.2;
-  text-align: center !important;
-  width: 100%;
+  font-family: 'ttnp-round', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 6.5rem);
+  font-weight: 900;
+  color: #7DFF00;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  text-shadow: 3px 3px 0px rgba(125, 255, 0, 0.12);
 }
 
-/* Center the inner flex container of BlurText */
-.header-section :deep(.blur-text) {
-  justify-content: center;
-}
+.title-dot { color: #F0E0FF; opacity: 0.35; }
 
-.subtitle {
-  color: rgba(240, 231, 213, 0.6);
-  font-size: 1.1rem;
-  font-style: italic;
-  letter-spacing: 0.15em;
-  margin-top: 0.5rem;
-}
-
-/* Main Layout */
-.main-layout {
+.header-tags {
   display: flex;
-  justify-content: center;
-  gap: 3rem;
-  max-width: 1100px;
-  margin: 0 auto;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-/* Quotes Section */
-.quotes-section {
-  flex: 1;
-  max-width: 700px;
-  background: linear-gradient(145deg, rgba(45, 53, 85, 0.6) 0%, rgba(26, 31, 53, 0.7) 100%);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(240, 231, 213, 0.15);
-  border-radius: 20px;
-  padding: 2rem;
-}
-
-.quotes-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Quote Item */
-.quote-item {
-  position: relative;
-  padding: 1.25rem 0 1.25rem 1rem;
-  border-bottom: 1px solid rgba(240, 231, 213, 0.08);
-  transition: all 0.3s ease;
-}
-
-.quote-item:first-child {
-  padding-top: 0;
-}
-
-.quote-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.quote-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: transparent;
-  transition: background 0.3s ease;
-  border-radius: 1px;
-}
-
-.quote-item:hover::before {
-  background: rgba(240, 231, 213, 0.4);
-}
-
-/* Media type accent colors on hover */
-.quote-item.media-book:hover::before {
-  background: rgba(139, 180, 140, 0.7);
-}
-
-.quote-item.media-article:hover::before {
-  background: rgba(135, 206, 235, 0.7);
-}
-
-.quote-item.media-music:hover::before {
-  background: rgba(221, 160, 221, 0.7);
-}
-
-.quote-item.media-film:hover::before {
-  background: rgba(255, 182, 108, 0.7);
-}
-
-.quote-item.media-other:hover::before {
-  background: rgba(240, 231, 213, 0.5);
-}
-
-.quote-content {
-  padding-left: 0.25rem;
-}
-
-/* Quote Text */
-.quote-text {
-  color: #F0E7D5;
-  font-size: 1.15rem;
-  line-height: 1.75;
-  font-weight: 400;
-  margin: 0 0 0.75rem 0;
-  font-style: italic;
-}
-
-/* Quote Attribution */
-.quote-attribution {
-  color: rgba(240, 231, 213, 0.6);
-  font-size: 0.9rem;
-}
-
-.author {
-  color: rgba(240, 231, 213, 0.85);
-  font-weight: 500;
-}
-
-.source {
-  font-style: italic;
-}
-
-.media-type {
-  margin-left: 0.5rem;
-  color: rgba(240, 231, 213, 0.4);
-  font-size: 0.8rem;
+.pill-tag {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
+  letter-spacing: 0.1em;
   text-transform: lowercase;
+  color: #F0E0FF;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(240, 220, 255, 0.24);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
 }
 
-/* Layout Spacer - balances the filter sidebar */
-.layout-spacer {
-  width: 180px;
+.deco-star { font-size: 0.84rem; color: #7DFF00; opacity: 0.65; }
+
+.header-right {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.deco-cross {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: rgba(240, 220, 255, 0.28);
+  line-height: 1;
   flex-shrink: 0;
 }
 
-/* Filter Sidebar */
-.filter-sidebar {
-  width: 180px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 6rem;
-  height: fit-content;
+.header-desc {
+  font-family: 'ttnp-round', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: rgba(240, 220, 255, 0.70);
 }
 
-.filter-header {
-  color: rgba(240, 231, 213, 0.5);
-  font-size: 0.75rem;
-  text-transform: uppercase;
+/* ── Filter bar (AQUA pill style) ─────────────────────── */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-pill {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: rgba(240, 220, 255, 0.70);
+  background: transparent;
+  border: 1px solid rgba(240, 220, 255, 0.24);
+  border-radius: 999px;
+  padding: 0.28rem 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.filter-pill:hover {
+  color: #F0E0FF;
+  border-color: rgba(240, 220, 255, 0.52);
+  background: rgba(240, 220, 255, 0.05);
+}
+
+.filter-pill.active {
+  background: #7DFF00;
+  border-color: #7DFF00;
+  color: #0E000C;
+}
+
+.pill-count {
+  font-size: 0.84rem;
+  opacity: 0.7;
+}
+
+/* ── Section divider ──────────────────────────────────── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
   letter-spacing: 0.15em;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(240, 231, 213, 0.1);
+  text-transform: uppercase;
+  color: rgba(240, 220, 255, 0.52);
 }
 
-.filter-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.div-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(240, 220, 255, 0.20);
 }
 
-.filter-item {
+/* ── AQUA two-column quotes grid ──────────────────────── */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.quote-block {
+  border-left: 2px solid rgba(240, 220, 255, 0.14);
+  padding-left: 1rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.quote-block:nth-child(3n+1) { transform: rotate(-0.4deg); }
+.quote-block:nth-child(3n+2) { transform: rotate(0.3deg); }
+.quote-block:nth-child(3n+3) { transform: rotate(-0.2deg); }
+
+.quote-block:hover { border-left-color: #7DFF00; transform: rotate(0deg); }
+
+.quote-meta-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 0.6rem 0.75rem;
-  margin-bottom: 0.25rem;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  color: rgba(240, 231, 213, 0.7);
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: left;
+  margin-bottom: 0.6rem;
 }
 
-.filter-item:hover {
-  background: rgba(240, 231, 213, 0.08);
-  color: #F0E7D5;
+.quote-index {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: rgba(240, 220, 255, 0.52);
 }
 
-.filter-item.active {
-  background: rgba(240, 231, 213, 0.12);
-  color: #F0E7D5;
-}
-
-.filter-item.active::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 2px;
-  height: 1rem;
-  background: #F0E7D5;
-  border-radius: 1px;
-}
-
-.count {
-  font-size: 0.75rem;
-  color: rgba(240, 231, 213, 0.4);
-  background: rgba(240, 231, 213, 0.08);
+.quote-type-pill {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.84rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   padding: 0.15rem 0.5rem;
-  border-radius: 9999px;
+  border: 1px solid;
+  border-radius: 999px;
 }
 
-.filter-item.active .count {
-  background: rgba(240, 231, 213, 0.15);
-  color: rgba(240, 231, 213, 0.6);
+.badge-book    { color: #7DFF00;       border-color: rgba(255, 0, 140, 0.45); }
+.badge-music   { color: #7DFF00;       border-color: rgba(125, 255, 0, 0.35); }
+.badge-film    { color: rgba(240, 220, 255, 0.78); border-color: rgba(240, 220, 255, 0.28); }
+.badge-article { color: #7DFF00;       border-color: rgba(180, 0, 120, 0.35); }
+.badge-other   { color: rgba(240, 220, 255, 0.64); border-color: rgba(240, 220, 255, 0.20); }
+
+.quote-text {
+  font-family: 'ttnp-round', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #F0E0FF;
+  font-style: italic;
+  margin-bottom: 0.75rem;
 }
 
-/* Empty State */
-.empty-state {
-  text-align: center;
-  padding: 4rem 2rem;
-  color: rgba(240, 231, 213, 0.5);
+.open-mark, .close-mark {
+  font-size: 1.2em;
+  line-height: 0;
+  vertical-align: -0.15em;
+  color: #7DFF00;
+  font-style: normal;
+}
+
+.quote-attr {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.attr-dash {
+  font-family: 'ttnp-round', sans-serif;
+  color: rgba(240, 220, 255, 0.45);
+}
+
+.attr-author {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.84rem;
+  letter-spacing: 0.06em;
+  color: rgba(240, 220, 255, 0.88);
+  text-transform: uppercase;
+}
+
+.attr-source {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
+  color: rgba(240, 220, 255, 0.38);
   font-style: italic;
 }
 
-/* Transitions */
-.quote-fade-enter-active,
-.quote-fade-leave-active {
-  transition: all 0.3s ease;
+.attr-source::before { content: '/ '; opacity: 0.5; }
+
+/* ── Empty state ──────────────────────────────────────── */
+.empty-state {
+  padding: 3rem 0;
+  grid-column: 1 / -1;
 }
 
+.empty-pill {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.84rem;
+  letter-spacing: 0.12em;
+  color: rgba(240, 220, 255, 0.52);
+  background: rgba(240, 220, 255, 0.06);
+  border: 1px solid rgba(240, 220, 255, 0.20);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  text-transform: lowercase;
+}
+
+/* ── Bottom mark ──────────────────────────────────────── */
+.page-bottom {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
+  letter-spacing: 0.15em;
+  color: rgba(240, 220, 255, 0.35);
+  text-transform: uppercase;
+}
+
+.bottom-deco { color: #7DFF00; opacity: 0.5; font-size: 0.84rem; }
+.bottom-rule { flex: 1; height: 1px; background: rgba(240, 220, 255, 0.14); }
+
+/* ── Transitions ──────────────────────────────────────── */
+.quote-fade-enter-active,
+.quote-fade-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
 .quote-fade-enter-from,
 .quote-fade-leave-to {
   opacity: 0;
-  transform: translateX(-10px);
+  transform: translateY(6px);
 }
+.quote-fade-move { transition: transform 0.2s ease; }
 
-.quote-fade-move {
-  transition: transform 0.3s ease;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .layout-spacer {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .noteables-page {
-    padding: 1.5rem 1rem 3rem;
-  }
-  
-  .main-layout {
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .filter-sidebar {
-    width: 100%;
-    position: static;
-    padding: 1rem;
-    background: rgba(45, 53, 85, 0.3);
-    border-radius: 12px;
-    border: 1px solid rgba(240, 231, 213, 0.1);
-  }
-  
-  .filter-header {
-    margin-bottom: 0.75rem;
-  }
-  
-  .filter-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  .filter-item {
-    padding: 0.5rem 1rem;
-    margin-bottom: 0;
-    border-radius: 9999px;
-    border: 1px solid rgba(240, 231, 213, 0.15);
-  }
-  
-  .filter-item.active {
-    border-color: rgba(240, 231, 213, 0.4);
-  }
-  
-  .quotes-section {
-    max-width: 100%;
-    padding: 1.5rem;
-    border-radius: 16px;
-  }
-  
-  .quote-text {
-    font-size: 1.05rem;
-  }
-  
-  .header-section {
-    margin-bottom: 2rem;
-    padding-top: 1rem;
-  }
+/* ── Mobile ───────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .noteables-page { width: calc(100% - 1.5rem); padding: 1.25rem 1.25rem 2.5rem; margin: 1rem auto; }
+  .page-header { grid-template-columns: 1fr; gap: 1rem; }
+  .quotes-grid { grid-template-columns: 1fr; }
 }
 </style>

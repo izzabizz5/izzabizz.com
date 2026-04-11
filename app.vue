@@ -1,17 +1,6 @@
 <template>
   <div id="app">
-    <PixelSnow
-      :colors="['#F0E7D5']"
-      :flakeSize="0.01"
-      :minFlakeSize="1.25"
-      :pixelResolution="200"
-      :speed="1.25"
-      :density="0.2"
-      :direction="125"
-      :brightness="3.5"
-      :depthFade="20"
-      :gamma="0.3"
-    />
+    <OrganicBg />
     <div class="content-wrapper">
       <Header />
       <main>
@@ -25,7 +14,7 @@
 <script setup>
 import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
-import PixelSnow from '@/components/PixelSnow.vue'
+import OrganicBg from '@/components/OrganicBg.vue'
 </script>
 
 <style>
@@ -36,6 +25,7 @@ import PixelSnow from '@/components/PixelSnow.vue'
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background: #0E000C;
 }
 
 .content-wrapper {

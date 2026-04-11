@@ -11,80 +11,39 @@
 html {
   font-size: 16px;
   overflow-x: hidden;
-  background-color: #212842;
+  background-color: #0E000C;
 }
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: #212842;
+  background-color: #0E000C;
   -webkit-font-smoothing: antialiased;
+  color: #F0E0FF;
 }
 
-/* Font Face */
+/* ── Font Faces ───────────────────────────────────────── */
 @font-face {
   font-family: 'ttnp-round';
   src: url(@/assets/fonts/ttnp-round.otf) format('opentype');
   font-display: swap;
 }
 
-/* Text with custom font */
-.text {
-  font-family: ttnp-round, sans-serif;
+@font-face {
+  font-family: 'ttnp-square';
+  src: url(@/assets/fonts/ttnp-square.otf) format('opentype');
+  font-display: swap;
 }
 
-/* Hero Section */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem 1rem;
-  background-color: #70A37F;
-  width: 100%;
-  box-sizing: border-box;
-  background-size: cover;
+/* ── Selection ────────────────────────────────────────── */
+::selection {
+  background: #7DFF00;
+  color: #0E000C;
 }
 
-@media (min-width: 640px) {
-  .hero {
-    padding: 3rem 1.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .hero {
-    padding: 4rem 2rem;
-  }
-}
-
-/* Hero Header - Responsive by default */
-.hero-header {
-  font-weight: bold;
-  color: #ffffff !important;
-  margin: 0 0 1rem;
-  font-family: ttnp-round, sans-serif;
-  line-height: 1.2;
-  text-align: center;
-}
-
-.hero-header-small {
-  font-weight: bold;
-  color: #ffffff !important;
-  margin: 0 0 1rem;
-  font-family: ttnp-round, sans-serif;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  header {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-  }
-}
+/* ── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(125, 255, 0, 0.25); }
+::-webkit-scrollbar-thumb:hover { background: rgba(125, 255, 0, 0.55); }

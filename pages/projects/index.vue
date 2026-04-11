@@ -1,226 +1,426 @@
 <template>
-  <div class="relative w-full min-h-screen overflow-y-auto">
-    <div class="flex flex-col items-center px-4 sm:px-6 md:px-8 py-24">
-      <client-only>
-        <BlurText
-          text="Projects"
-          :delay="200"
-          class-name="hero-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 text-white text-center"
-          animate-by="words"
-          direction="top"
-          :threshold="0.1"
-          root-margin="0px"
-          :step-duration="0.4"
-        />
-      </client-only>
+  <div class="projects-page">
 
-      <!-- Loading State -->
-      <div v-if="isLoading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl w-full translate-y-5">
-        <div v-for="i in 3" :key="i" class="project-card animate-pulse">
-          <div class="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
-          <div class="h-20 bg-gray-200 rounded w-full mb-4"></div>
-          <div class="flex justify-between items-center">
-            <div class="h-4 bg-gray-200 rounded w-24"></div>
-            <div class="h-4 bg-gray-200 rounded w-20"></div>
-          </div>
+    <span class="page-edge-label" aria-hidden="true">PROJECTS.DIR · 00</span>
+
+    <!-- style page header -->
+    <div class="page-header">
+      <div class="header-left">
+        <h1 class="page-title">PROJECTS<span class="title-dot">.</span></h1>
+        <div class="header-tags">
+          <span class="pill-tag">{{ projects.length }} items</span>
+          <span class="deco-star">✦</span>
+          <span class="pill-tag">nuxt · vue · python</span>
         </div>
       </div>
-
-      <!-- Cards Grid -->
-      <div v-else>
-        <div v-if="projects.length === 0" class="text-center text-lg text-gray-500 py-12">
-          No projects found.
-        </div>
-        <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl w-full translate-y-5">
-          <div
-            v-for="(project, index) in projects"
-            :key="project.slug || index"
-            :ref="el => { if (el) projectRefs[index] = el }"
-            class="project-card transition-all duration-700 ease-out mx-auto w-full max-w-[20rem] sm:max-w-none transform hover:-translate-y-2"
-            :class="visibleCards[index] !== false ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'"
-          >
-            <h2 class="text-lg font-mono sm:text-xl font-semibold mb-2">{{ project.title }}</h2>
-            <p class="text-sm font-mono sm:text-base leading-relaxed mb-4">
-              {{ project.description }}
-            </p>
-            <div class="flex justify-between items-center">
-              <NuxtLink :to="'/projects/' + project.slug" class="project-link">Read More</NuxtLink>
-              <span class="text-sm text-gray-600">{{ project.createdAt }}</span>
-            </div>
-          </div>
-        </div>
+      <div class="header-right">
+        <span class="deco-cross">+</span>
+        <p class="header-desc">things i've built || web apps & competition work. some finished, some ongoing.</p>
       </div>
     </div>
+
+    <!-- Divider -->
+    <div class="section-divider">
+      <span class="div-line"></span>
+      <span class="div-label">index</span>
+      <span class="div-line"></span>
+    </div>
+
+    <!-- style project list -->
+    <ul class="project-list">
+      <li
+        v-for="(project, i) in projects"
+        :key="project.slug"
+        class="project-entry"
+        :ref="el => { if (el) projectRefs[i] = el }"
+        :class="{ visible: visibleItems[i] }"
+      >
+        <!-- Top meta row -->
+        <div class="entry-meta-row">
+          <span class="entry-index">//{{ String(i + 1).padStart(3, '0') }}</span>
+          <span class="entry-date">{{ project.createdAt }}</span>
+          <span class="deco-mark">◈</span>
+        </div>
+
+        <!-- two-column: title + description -->
+        <div class="entry-body-grid">
+          <h2 class="entry-title">{{ project.title }}</h2>
+          <div class="entry-right-col">
+            <p class="entry-desc">{{ project.description }}</p>
+            <NuxtLink :to="'/projects/' + project.slug" class="entry-cta">
+              read more <span class="cta-arrow">→</span>
+            </NuxtLink>
+          </div>
+        </div>
+
+        <div class="entry-rule"></div>
+      </li>
+    </ul>
+
+    <!-- Bottom mark -->
+    <div class="page-bottom">
+      <span class="bottom-deco">◈</span>
+      <span class="bottom-rule"></span>
+      <span class="bottom-label">izzabizz_ · projects.dir</span>
+    </div>
+
   </div>
-  
 </template>
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
-import BlurText from '@/components/BlurText.vue'
 
-const visibleCards = ref([])
 const projectRefs = ref([])
-const isLoading = ref(true)
+const visibleItems = ref([])
 
-// Static projects data
 const projects = ref([
   {
-    title: 'CTFs for CCSO Intro GBM',
-    description: 'Created custom Capture The Flag challenges for Penn State\'s Competitive Cyber Security Organization.',
+    title: 'Medusa',
+    description: 'App that detects nonconsensually distributed images online and automates takedown requests. Won first place ($3,000) at the 2026 Bardusch Family IdeaMakers Challenge.',
+    slug: 'medusa',
+    createdAt: 'Mar 2026',
+    content: `Co-built with my friend Marisa. The idea came out of a real situation. A Penn State athlete needed help tracking down and reporting misused images, and the process was exhausting and manual.
+
+## What it does
+
+Medusa uses facial recognition and keyword-matching to scan the web for nonconsensually distributed personal imagery. When it finds something, it automates the takedown request process across platforms — cutting what used to take hours down to something that can run at scale.
+
+## Recognition
+
+Won first place and a $3,000 prize at the 2026 Bardusch Family IdeaMakers Challenge, held during Penn State Startup Week powered by PNC on March 25, 2026.
+
+[Read the PSU writeup](https://www.psu.edu/news/information-sciences-and-technology/story/app-prevent-misuse-personal-imagery-wins-top-prize)
+
+## Stack
+
+- Facial recognition for image matching
+- Keyword-matching for content discovery
+- Automated DMCA/platform takedown pipeline`
+  },
+  {
+    title: 'CTF Challenges for CCSO',
+    description: 'Custom Capture The Flag challenges written for Penn State\'s CCSO introduction meeting — cryptography, web, binary, and network categories.',
     slug: 'ctfs-for-ccso-intro-gbm',
     createdAt: 'Aug 2025',
-    content: `I created a series of custom Capture The Flag challenges for Penn State's Competitive Cyber Security Organization (CCSO) Introduction General Body Meeting.
+    content: `As CCSO president I wanted the intro GBM to actually teach something, so I built a set of CTF challenges from scratch instead of pulling from existing problem sets.
 
-## Overview
-
-These challenges were designed to introduce new members to cybersecurity concepts in a fun and engaging way. The CTFs covered various topics including:
+## Categories
 
 - Basic cryptography
 - Web security fundamentals
-- Binary exploitation basics
-- Network analysis
+- Binary exploitation intro
+- Network traffic analysis
 
-## Impact
+## Notes
 
-The event was a great success, with over 50 students participating and learning fundamental security concepts through hands-on challenges.`
+Designed to be completable by people who'd never touched security before, but still have a real challenge layer for members who'd been competing for a year. Over 50 students participated.`
   },
   {
     title: 'Portfolio Website',
-    description: 'A modern, animated personal portfolio built with Nuxt 3 and Vue 3.',
+    description: 'This site!',
     slug: 'portfolio-website',
     createdAt: 'Dec 2025',
-    content: `Built a personal portfolio website showcasing my projects and skills.
+    content: `Wanted a portfolio that didn't look like a template. Ended up going pretty deep on the visual side.
 
-## Tech Stack
+## Stack
 
-- Nuxt 3 for SSR and routing
-- Vue 3 with Composition API
-- Tailwind CSS for styling
-- Custom animations and effects
+- Nuxt 3 for SSR and file-based routing
+- Vue 3 Composition API
+- Tailwind CSS + scoped CSS
+- Custom SVG blob background with feGaussianBlur filter
+- CSS halftone dot overlay for texture
 
-## Features
+## Design
 
-- Responsive design
-- Smooth scroll animations
-- Project showcase
-- Interactive components`
+Collage/zine aesthetic — ghost typographic fragments in the background, frosted glass content panels, editorial split-column layouts. Went through about five different background approaches before landing on the organic blob thing.`
   },
   {
     title: 'Dish Decoder',
-    description: 'Extract only the good parts of a recipe webpage.',
+    description: 'Strips recipe pages down to ingredients and instructions. No backstory & no ads. Just the glorious food.',
     slug: 'dish-decoder',
     createdAt: 'Nov 2025',
-    content: `Fun project that helps to pull only ingredients and instructions while also building a grocery list.
+    content: `Built this because it was annoying to look through a 2,000-word essay about someone's childhood memories to find out if I need to mix the sabayon or fold it.
 
-  # Dish Decoder 🍳
+## What it does
 
-  So, I finally got around to building **Dish Decoder**. I made this because I was tired of trying to cook dinner and having to scroll through a 2,000-word essay about someone's childhood trip to Italy just to find out how much long I have to whip the whipping cream for a tiramisu recipe. 
+Takes a recipe URL and returns only the ingredients and steps. That's it.
 
-  ## What is it?
-  It’s a web app that takes a messy recipe URL and "decodes" it. It strips away all the ads, the giant high-res photos that take forever to load, and the life stories, leaving you with just the ingredients and the actual steps. 
+## Features
 
-  ## Why I think it’s cool:
-  - **No Clutter:** It’s just the facts. Ingredients + Instructions. That’s it.
-  - **Grocery List Mode:** There’s a dedicated view that just shows the ingredients so you can use it while walking around the store without losing your mind.
-  - **Exporting:** If you’re like me and keep a digital cookbook in Notion or Obsidian, you can export the recipe as **Markdown**. You can also just grab a **PDF** if you’re old school and want to print it.
-  - **Dark Mode:** Because let’s be real, I’m usually cooking or coding at 11 PM and don’t want to be blinded by a white screen.
+- Ingredients + instructions only
+- Grocery list mode (ingredients view only)
+- Export to Markdown or PDF
+- Dark mode
 
-  ## Nerd Stuff
-  I wanted to keep the vibes modern and fast, so here’s what I used:
-  - **Nuxt 3 & Vue:** My go-to for building stuff quickly. It’s super fast and handles the routing like a champ.
-  - **TypeScript:** Because I hate when my code breaks for no reason. Having types makes the whole dev process way less of a headache.
-  - **Tailwind CSS:** For styling. I can’t go back to regular CSS after this—it makes everything look clean with way less effort.
-  - **Docker:** I containerized the whole thing. It’s a bit of a flex, but it makes deploying it super easy and ensures it runs the same on my machine as it does on the server.
-  - **GitHub Actions:** Set up some CI/CD so every time I push code, it automatically checks if I broke anything.
+## Stack
 
-  ## Summary
-  It’s simple, it’s fast, and it saves me from reading about someone's "culinary journey" when I just want to make some tacos. Check out the repo if you want to see how the scraping logic works or if you want to run a local instance!`
+- Nuxt 3 + Vue for routing and reactivity
+- TypeScript
+- Tailwind CSS
+- Docker for consistent deploys
+- GitHub Actions for CI/CD`
   }
-  
 ])
 
-// Set up intersection observer after component mounts
-const setupObserver = () => {
-  if (!projectRefs.value.length) {
-    console.log('No project refs found, retrying...')
-    // Retry after a short delay if refs aren't ready
-    setTimeout(() => {
-      if (projectRefs.value.length) {
-        setupObserver()
-      }
-    }, 100)
-    return
-  }
-
-  console.log('Setting up observer for', projectRefs.value.length, 'cards')
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const index = projectRefs.value.indexOf(entry.target)
-        if (entry.isIntersecting && index !== -1) {
-          console.log('Card', index, 'is now visible')
-          visibleCards.value[index] = true
-          observer.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.1, rootMargin: '50px' }
-  )
-
-  projectRefs.value.forEach((el, index) => {
-    if (el) {
-      observer.observe(el)
-      console.log('Observing card', index)
-    }
-  })
-}
-
 onMounted(() => {
-  // Initialize visibility array - cards start hidden for animation
-  visibleCards.value = new Array(projects.value.length).fill(false)
-  
-  // Simulate loading state for smooth transition
-  setTimeout(() => {
-    isLoading.value = false
-    nextTick(() => {
-      setupObserver()
-    })
-  }, 300)
+  visibleItems.value = new Array(projects.value.length).fill(false)
+  nextTick(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const i = projectRefs.value.indexOf(entry.target)
+          if (entry.isIntersecting && i !== -1) {
+            visibleItems.value[i] = true
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.05 }
+    )
+    projectRefs.value.forEach(el => { if (el) observer.observe(el) })
+  })
 })
 </script>
 
 <style scoped>
-.project-card {
-  background-color: rgba(45, 53, 85, 0.4);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(240, 231, 213, 0.2);
-  border-radius: 20px;
-  padding: 1.5rem;
-  color: #F0E7D5;
-  text-align: left;
-  max-width: 90vw;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, background-color, opacity;
+.projects-page {
+  position: relative;
+  width: calc(100% - 3rem);
+  max-width: 960px;
+  margin: 1.75rem auto 2.5rem;
+  border-radius: 14px;
+  padding: 1.75rem 2rem 3rem;
+  color: #F0E0FF;
+  background: rgba(20, 0, 16, 0.92);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(240, 220, 255, 0.10);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
-.project-card:hover {
-  background-color: rgba(61, 74, 112, 0.5);
-  box-shadow: 0 10px 30px -10px rgba(240, 231, 213, 0.3);
-  border-color: rgba(240, 231, 213, 0.4);
+.page-edge-label {
+  position: absolute;
+  top: 3.5rem;
+  right: 0.6rem;
+  transform: rotate(90deg);
+  transform-origin: right top;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.48rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(240, 220, 255, 0.18);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
 }
 
-.project-link {
-  font-weight: 600;
-  color: #F0E7D5;
-  border-bottom: 2px solid rgba(240, 231, 213, 0.6);
+/* ── Page header ──────────────────────────────────────── */
+.page-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.header-left { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.page-title {
+  font-family: 'ttnp-round', sans-serif;
+  font-size: clamp(2.75rem, 9vw, 7rem);
+  font-weight: 900;
+  color: #7DFF00;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  text-shadow: 3px 3px 0px rgba(125, 255, 0, 0.12);
+}
+
+.title-dot { color: #F0E0FF; opacity: 0.35; }
+
+.header-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pill-tag {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: #F0E0FF;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(240, 220, 255, 0.24);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+}
+
+.deco-star { font-size: 0.84rem; color: #7DFF00; opacity: 0.65; }
+
+.header-right {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.deco-cross {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: rgba(240, 220, 255, 0.28);
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.header-desc {
+  font-family: 'ttnp-round', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: rgba(240, 220, 255, 0.70);
+}
+
+/* ── Section divider ──────────────────────────────────── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(240, 220, 255, 0.52);
+}
+
+.div-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(240, 220, 255, 0.20);
+}
+
+/* ── Project list ─────────────────────────────────────── */
+.project-list { list-style: none; padding: 0; margin: 0; }
+
+.project-entry {
+  border-left: 2px solid rgba(240, 220, 255, 0.14);
+  padding-left: 1.25rem;
+  transition: border-color 0.2s ease, opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.project-entry.visible { opacity: 1; transform: translateY(0); }
+.project-entry.visible:nth-child(odd)  { transform: translateY(0) rotate(-0.3deg); }
+.project-entry.visible:nth-child(even) { transform: translateY(0) rotate(0.2deg); }
+.project-entry:hover { border-left-color: #7DFF00; transform: rotate(0deg) !important; }
+
+/* Meta row */
+.entry-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.entry-index {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
+  letter-spacing: 0.15em;
+  color: rgba(240, 220, 255, 0.52);
+}
+
+.entry-date {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
+  letter-spacing: 0.1em;
+  color: rgba(240, 220, 255, 0.45);
+}
+
+.deco-mark { font-size: 0.94rem; color: #7DFF00; opacity: 0.5; }
+
+/* two-column body */
+.entry-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  align-items: start;
+}
+
+.entry-title {
+  font-family: 'ttnp-round', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: #F0E0FF;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.entry-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.entry-desc {
+  font-family: 'ttnp-round', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: rgba(240, 220, 255, 0.78);
+}
+
+.entry-cta {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.84rem;
+  letter-spacing: 0.1em;
+  color: rgba(240, 220, 255, 0.70);
   text-decoration: none;
-  transition: color 0.3s ease, border-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.75rem;
+  border: 1px solid rgba(240, 220, 255, 0.28);
+  border-radius: 999px;
+  width: fit-content;
+  transition: all 0.15s ease;
 }
 
-.project-link:hover {
-  color: #ffffff;
-  border-color: #F0E7D5;
+.entry-cta:hover {
+  background: #7DFF00;
+  border-color: #7DFF00;
+  color: #0E000C;
+}
+
+.cta-arrow { font-size: 0.94rem; }
+
+.entry-rule {
+  height: 1px;
+  background: rgba(240, 220, 255, 0.14);
+  margin-bottom: 2rem;
+}
+
+/* ── Bottom mark ──────────────────────────────────────── */
+.page-bottom {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
+  letter-spacing: 0.15em;
+  color: rgba(240, 220, 255, 0.35);
+  text-transform: uppercase;
+}
+
+.bottom-deco { color: #7DFF00; opacity: 0.5; font-size: 0.84rem; }
+.bottom-rule { flex: 1; height: 1px; background: rgba(240, 220, 255, 0.14); }
+
+/* ── Mobile ───────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .projects-page { width: calc(100% - 1.5rem); padding: 1.25rem 1.25rem 2.5rem; margin: 1rem auto; }
+  .page-header { grid-template-columns: 1fr; gap: 1rem; }
+  .entry-body-grid { grid-template-columns: 1fr; gap: 0.75rem; }
 }
 </style>

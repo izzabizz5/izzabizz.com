@@ -1,162 +1,252 @@
 <template>
   <header class="site-header">
-    <div class="header-content">
-      <!-- Left: Logo (fixed width) -->
-      <div class="text-base sm:text-lg tracking-widest font-semibold select-none flex-shrink-0 w-32 sm:w-48 hover:text-[#F0E7D5] transition-colors duration-300 cursor-default text-[#F0E7D5]/90">
-        <span class="inline-block hover:animate-pulse">izzabizz_</span>
-      </div>
+    <div class="header-inner">
 
-      <!-- Center: Navigation (grows to take available space) -->
-      <nav
-        class="hidden md:flex flex-1 items-center justify-center gap-10"
-      >
+      <!-- Logo -->
+      <NuxtLink to="/" class="logo">izzabizz_</NuxtLink>
+
+      <!-- Desktop nav -->
+      <nav class="desktop-nav">
         <NuxtLink
           v-for="link in links"
           :key="link.name"
           :to="link.href"
-          class="nav-link px-6 py-2 rounded-full border border-[#F0E7D5]/30 bg-gradient-to-br from-[#2d3555]/50 to-[#1a1f35]/50
-                 hover:from-[#3d4a70]/40 hover:to-[#2d3555]/70 hover:border-[#F0E7D5]/60 hover:shadow-lg hover:shadow-[#F0E7D5]/20
-                 text-[#F0E7D5]/90 hover:text-white transition-all duration-300 ease-out
-                 flex items-center justify-center relative overflow-hidden
-                 hover:scale-105 active:scale-95"
-        >
-          <span class="relative z-10">{{ link.name }}</span>
-          <span class="absolute inset-0 bg-gradient-to-r from-transparent via-[#F0E7D5]/10 to-transparent translate-x-[-100%] hover-slide"></span>
-        </NuxtLink>
+          class="nav-item"
+          :class="{ 'nav-active': isActive(link.href) }"
+        >{{ link.name }}</NuxtLink>
       </nav>
 
-      <!-- Right: Animated Uptime Indicator (fixed width) -->
-      <div class="hidden lg:flex items-center gap-2 text-xs lg:text-sm text-[#F0E7D5]/80 flex-shrink-0 w-32 lg:w-48 justify-end">
-        <span class="opacity-80">uptime:</span>
-        <span class="text-[#F0E7D5] font-semibold tabular-nums px-1.5 lg:px-2 py-1 rounded bg-[#F0E7D5]/10 border border-[#F0E7D5]/20 text-xs lg:text-sm">{{ uptime }}</span>
+      <!-- Uptime pill -->
+      <div class="uptime-pill">
+        <span class="uptime-dot"></span>
+        <span class="uptime-value">{{ uptime }}</span>
       </div>
 
-      <!-- Mobile Hamburger -->
-      <div class="flex items-center md:hidden ml-auto">
-        <button
-          @click="isOpen = !isOpen"
-          class="w-9 h-9 rounded-full border border-[#F0E7D5]/20 flex items-center justify-center
-                 hover:border-[#F0E7D5]/40 bg-[#2d3555]/80 transition-all duration-200"
-        >
-          <svg
-            v-if="!isOpen"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="1.5"
-            class="w-5 h-5 text-[#F0E7D5]"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg
-            v-else
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="1.5"
-            class="w-5 h-5 text-[#F0E7D5]"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
+      <!-- Mobile toggle -->
+      <button class="mobile-toggle" @click="isOpen = !isOpen" aria-label="Menu">
+        <span class="toggle-inner" :class="{ open: isOpen }">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+
     </div>
 
-    <!-- Mobile Menu -->
-    <transition name="fade">
-      <nav
-        v-if="isOpen"
-        class="md:hidden flex flex-col w-full max-w-full items-start gap-4 pb-5 pt-2 bg-[#2d3555]/80 border-t border-[#F0E7D5]/10 px-4 sm:px-6"
-      >
-        <a
+    <!-- Mobile menu -->
+    <Transition name="nav-drop">
+      <nav v-if="isOpen" class="mobile-nav">
+        <NuxtLink
           v-for="link in links"
           :key="link.name"
-          :href="link.href"
-          class="px-6 py-2 rounded-full border border-[#F0E7D5]/20 bg-[#2d3555]/40
-                 hover:border-[#F0E7D5]/40 hover:bg-[#3d4a70]/80 text-[#F0E7D5]/90 hover:text-white
-                 transition-all duration-200 w-full text-left"
-        >
-          {{ link.name }}
-        </a>
+          :to="link.href"
+          class="mobile-nav-item"
+          :class="{ 'nav-active': isActive(link.href) }"
+          @click="isOpen = false"
+        >{{ link.name }}</NuxtLink>
       </nav>
-    </transition>
+    </Transition>
   </header>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
-const isOpen = ref(false);
+const isOpen = ref(false)
+const route = useRoute()
+
 const links = [
-  { name: "home", href: "/" },
-  { name: "projects", href: "/projects" },
-  { name: "about", href: "/about" },
-];
+  { name: 'home',      href: '/' },
+  { name: 'projects',  href: '/projects' },
+  { name: 'about',     href: '/about' },
+  { name: 'noteables', href: '/noteables' },
+]
 
-const uptime = ref("00:00:00");
+const isActive = (href: string) => {
+  if (href === '/') return route.path === '/'
+  return route.path.startsWith(href)
+}
+
+const uptime = ref('000d 00:00:00')
 
 onMounted(() => {
-  // Website launch date: October 27th, 2025
-  const launchDate = new Date('2025-10-27T00:00:00').getTime();
-  
-  const updateUptime = () => {
-    const diff = Math.floor((Date.now() - launchDate) / 1000);
-    const days = Math.floor(diff / 86400);
-    const hrs = Math.floor((diff % 86400) / 3600);
-    const mins = Math.floor((diff % 3600) / 60);
-    const secs = diff % 60;
-    
-    if (days > 0) {
-      uptime.value = `${days}d ${String(hrs).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
-    } else {
-      uptime.value = `${String(hrs).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
-    }
-  };
-  
-  updateUptime();
-  setInterval(updateUptime, 1000);
-});
+  const launchDate = new Date('2025-10-27T00:00:00').getTime()
+  const update = () => {
+    const diff = Math.floor((Date.now() - launchDate) / 1000)
+    const d = Math.floor(diff / 86400)
+    const h = Math.floor((diff % 86400) / 3600)
+    const m = Math.floor((diff % 3600) / 60)
+    const s = diff % 60
+    uptime.value = `${String(d).padStart(3,'0')}d ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`
+  }
+  update()
+  setInterval(update, 1000)
+})
 </script>
 
 <style scoped>
 .site-header {
-  opacity: 0.90;
   position: sticky;
   top: 0;
-  width: 100%;
   z-index: 50;
-  background: linear-gradient(to right, rgba(26, 31, 53, 0.75), rgba(45, 53, 85, 0.75), rgba(26, 31, 53, 0.75));
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(240, 231, 213, 0.2);
+  width: 100%;
+  background: transparent;
 }
 
-.header-content {
+.header-inner {
   display: flex;
   align-items: center;
-  width: 100%;
-  padding: 0.75rem 1rem;
-  color: #F0E7D5;
-  font-family: monospace;
+  gap: 1.5rem;
+  padding: 0.85rem 1.75rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
+  letter-spacing: 0.08em;
+}
+
+/* Logo */
+.logo {
+  font-family: 'ttnp-round', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #7DFF00;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+  text-shadow: 0 1px 8px rgba(125,255,0,0.4);
+}
+.logo:hover { opacity: 0.75; }
+
+/* Desktop nav */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+@media (max-width: 640px) { .desktop-nav { display: none; } }
+
+.nav-item {
+  color: rgba(240, 220, 255, 0.85);
+  text-decoration: none;
   text-transform: lowercase;
-  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid rgba(240, 220, 255, 0.2);
+  border-radius: 999px;
+  transition: all 0.15s ease;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-@media (min-width: 768px) {
-  .header-content {
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-  }
+.nav-item:hover {
+  color: #F0E0FF;
+  border-color: rgba(240, 220, 255, 0.45);
+  background: rgba(255, 255, 255, 0.10);
 }
 
-.nav-link:hover .hover-slide {
-  animation: slide 0.6s ease-out;
+.nav-item.nav-active {
+  color: #0E000C;
+  background: #7DFF00;
+  border-color: #7DFF00;
 }
 
-@keyframes slide {
-  to {
-    transform: translateX(200%);
-  }
+/* Uptime pill */
+.uptime-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: auto;
+  padding: 0.28rem 0.75rem;
+  border: 1px solid rgba(240, 220, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
 }
+
+@media (max-width: 640px) { .uptime-pill { display: none; } }
+
+.uptime-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #7DFF00;
+  animation: pulse 2.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.uptime-value {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  color: rgba(240, 220, 255, 0.70);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mobile toggle */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-left: auto;
+}
+
+@media (max-width: 640px) { .mobile-toggle { display: flex; align-items: center; } }
+
+.toggle-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 20px;
+}
+
+.toggle-inner span {
+  display: block;
+  height: 1.5px;
+  background: #F0E0FF;
+  transition: all 0.2s ease;
+}
+
+.toggle-inner.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.toggle-inner.open span:nth-child(2) { opacity: 0; }
+.toggle-inner.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+/* Mobile nav */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 1.75rem 1rem;
+  gap: 0.5rem;
+  background: rgba(20, 0, 16, 0.96);
+  backdrop-filter: blur(16px);
+}
+
+.mobile-nav-item {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: rgba(240, 220, 255, 0.82);
+  text-decoration: none;
+  text-transform: lowercase;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition: all 0.15s;
+  display: inline-block;
+  width: fit-content;
+}
+
+.mobile-nav-item:hover { color: #F0E0FF; border-color: rgba(228,236,192,0.25); }
+.mobile-nav-item.nav-active { color: #0E000C; background: #7DFF00; border-color: #7DFF00; }
+
+/* Transition */
+.nav-drop-enter-active, .nav-drop-leave-active { transition: opacity 0.15s, transform 0.15s; }
+.nav-drop-enter-from, .nav-drop-leave-to { opacity: 0; transform: translateY(-4px); }
 </style>
