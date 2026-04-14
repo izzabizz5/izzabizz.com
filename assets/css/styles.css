@@ -11,16 +11,16 @@
 html {
   font-size: 16px;
   overflow-x: hidden;
-  background-color: #0E000C;
+  background-color: #0A0810;
 }
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: #0E000C;
+  background-color: #0A0810;
   -webkit-font-smoothing: antialiased;
-  color: #F0E0FF;
+  color: #F5DDE5;
 }
 
 /* ── Font Faces ───────────────────────────────────────── */
@@ -38,12 +38,12 @@ body {
 
 /* ── Selection ────────────────────────────────────────── */
 ::selection {
-  background: #7DFF00;
-  color: #0E000C;
+  background: #C83060;
+  color: #F5DDE5;
 }
 
 /* ── Scrollbar ────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(125, 255, 0, 0.25); }
-::-webkit-scrollbar-thumb:hover { background: rgba(125, 255, 0, 0.55); }
+::-webkit-scrollbar-thumb { background: rgba(200, 48, 96, 0.35); }
+::-webkit-scrollbar-thumb:hover { background: rgba(200, 48, 96, 0.65); }

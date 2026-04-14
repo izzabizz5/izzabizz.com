@@ -55,10 +55,11 @@ const isOpen = ref(false)
 const route = useRoute()
 
 const links = [
-  { name: 'home',      href: '/' },
-  { name: 'projects',  href: '/projects' },
-  { name: 'about',     href: '/about' },
-  { name: 'noteables', href: '/noteables' },
+  { name: 'home',         href: '/' },
+  { name: 'projects',     href: '/projects' },
+  { name: 'compete',      href: '/competitions' },
+  { name: 'about',        href: '/about' },
+  { name: 'noteables',    href: '/noteables' },
 ]
 
 const isActive = (href: string) => {
@@ -107,12 +108,12 @@ onMounted(() => {
   font-family: 'ttnp-round', sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #7DFF00;
+  color: #C83060;
   text-decoration: none;
   letter-spacing: 0.02em;
   flex-shrink: 0;
   transition: opacity 0.15s;
-  text-shadow: 0 1px 8px rgba(125,255,0,0.4);
+  text-shadow: 0 1px 8px rgba(200, 48, 96, 0.45);
 }
 .logo:hover { opacity: 0.75; }
 
@@ -127,12 +128,12 @@ onMounted(() => {
 @media (max-width: 640px) { .desktop-nav { display: none; } }
 
 .nav-item {
-  color: rgba(240, 220, 255, 0.85);
+  color: rgba(245, 221, 229, 0.85);
   text-decoration: none;
   text-transform: lowercase;
   letter-spacing: 0.08em;
   padding: 0.3rem 0.75rem;
-  border: 1px solid rgba(240, 220, 255, 0.2);
+  border: 1px solid rgba(200, 48, 96, 0.22);
   border-radius: 999px;
   transition: all 0.15s ease;
   font-size: 0.9rem;
@@ -140,15 +141,15 @@ onMounted(() => {
 }
 
 .nav-item:hover {
-  color: #F0E0FF;
-  border-color: rgba(240, 220, 255, 0.45);
+  color: #F5DDE5;
+  border-color: rgba(200, 48, 96, 0.45);
   background: rgba(255, 255, 255, 0.10);
 }
 
 .nav-item.nav-active {
-  color: #0E000C;
-  background: #7DFF00;
-  border-color: #7DFF00;
+  color: #F5DDE5;
+  background: #C83060;
+  border-color: #C83060;
 }
 
 /* Uptime pill */
@@ -158,7 +159,7 @@ onMounted(() => {
   gap: 0.45rem;
   margin-left: auto;
   padding: 0.28rem 0.75rem;
-  border: 1px solid rgba(240, 220, 255, 0.18);
+  border: 1px solid rgba(200, 48, 96, 0.2);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.05);
   flex-shrink: 0;
@@ -170,7 +171,7 @@ onMounted(() => {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #7DFF00;
+  background: #C83060;
   animation: pulse 2.5s ease-in-out infinite;
   flex-shrink: 0;
 }
@@ -184,7 +185,7 @@ onMounted(() => {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.82rem;
   letter-spacing: 0.06em;
-  color: rgba(240, 220, 255, 0.70);
+  color: rgba(245, 221, 229, 0.70);
   font-variant-numeric: tabular-nums;
 }
 
@@ -210,7 +211,7 @@ onMounted(() => {
 .toggle-inner span {
   display: block;
   height: 1.5px;
-  background: #F0E0FF;
+  background: #F5DDE5;
   transition: all 0.2s ease;
 }
 
@@ -224,7 +225,7 @@ onMounted(() => {
   flex-direction: column;
   padding: 0.75rem 1.75rem 1rem;
   gap: 0.5rem;
-  background: rgba(20, 0, 16, 0.96);
+  background: rgba(14, 6, 10, 0.97);
   backdrop-filter: blur(16px);
 }
 
@@ -232,7 +233,7 @@ onMounted(() => {
   font-family: 'Courier New', Courier, monospace;
   font-size: 1rem;
   letter-spacing: 0.08em;
-  color: rgba(240, 220, 255, 0.82);
+  color: rgba(245, 221, 229, 0.82);
   text-decoration: none;
   text-transform: lowercase;
   padding: 0.35rem 0.75rem;
@@ -243,8 +244,8 @@ onMounted(() => {
   width: fit-content;
 }
 
-.mobile-nav-item:hover { color: #F0E0FF; border-color: rgba(228,236,192,0.25); }
-.mobile-nav-item.nav-active { color: #0E000C; background: #7DFF00; border-color: #7DFF00; }
+.mobile-nav-item:hover { color: #F5DDE5; border-color: rgba(200, 48, 96, 0.3); }
+.mobile-nav-item.nav-active { color: #F5DDE5; background: #C83060; border-color: #C83060; }
 
 /* Transition */
 .nav-drop-enter-active, .nav-drop-leave-active { transition: opacity 0.15s, transform 0.15s; }

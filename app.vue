@@ -25,7 +25,7 @@ import OrganicBg from '@/components/OrganicBg.vue'
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: #0E000C;
+  background: #0A0810;
 }
 
 .content-wrapper {

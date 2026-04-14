@@ -15,7 +15,7 @@
       </div>
       <div class="header-right">
         <span class="deco-cross">+</span>
-        <p class="header-desc">cybersecurity student at Penn State, graduating May 2026. i do threat hunting, competition security, and build things when something bothers me enough.</p>
+        <p class="header-desc">cybersecurity analytics &amp; operations at Penn State, graduating May 2026. ISC2 certified. i work at the intersection of security and law — threat hunting, ISO27001 compliance, CTF competitions, and building things when something bothers me enough.</p>
       </div>
     </div>
 
@@ -71,7 +71,7 @@ const entries = [
   {
     title: 'Background',
     type: 'bio',
-    body: 'Cybersecurity Analytics and Operations at Penn State, graduating May 2026. ISC2 Certified in Cybersecurity. Before PSU I was dual-enrolled at Brookdale CC, which is how I ended up starting college with an associate\'s degree already in hand.',
+    body: 'BS in Cybersecurity Analytics and Operations at Penn State, graduating May 2026. ISC2 Certified in Cybersecurity (CC). I came to PSU already holding an AA in Social Sciences from Brookdale Community College — dual-enrolled through high school. I focus on the intersection of cybersecurity and law: compliance frameworks, threat hunting, and what policy looks like in practice.',
   },
   {
     title: 'Medusa',
@@ -81,31 +81,36 @@ const entries = [
     linkLabel: 'read the writeup',
   },
   {
-    title: 'Cyber Threat Hunting Intern @ Becton Dickinson',
+    title: 'Threat Hunting Intern @ Becton Dickinson',
     type: 'work',
-    body: 'Hunted threats across Microsoft Sentinel and XDR — analyzing logs, endpoints, and cloud signals to catch suspicious activity early. Also worked on cloud security posture assessment and managed investigation workflows in ServiceNow. Summer 2025.',
+    body: 'Hunted threats across Microsoft Sentinel and XDR — analyzing logs, endpoints, and cloud signals to catch suspicious activity early. Worked on cloud security posture assessment and managed investigation workflows in ServiceNow. Summer 2025, Franklin Lakes NJ.',
   },
   {
     title: 'Cyber Associate @ Succession Systems',
     type: 'work',
-    body: 'Leading ISO27001 implementation, writing CVE and compliance reports for C-suite and clients, and handling direct security guidance. June 2024–present.',
+    body: 'Leading ISO27001 implementation toward full compliance. Writing CVE testing reports and compliance assessments for C-suite and clients. Providing direct cybersecurity guidance and managing ongoing client inquiries. June 2024–present, NYC metro.',
   },
   {
     title: 'President @ CCSO',
     type: 'leadership',
-    body: 'Running Penn State\'s competitive cybersecurity club — competitions (CCDC, CPTC, Hivestorm), events, budgeting, and university liaison work. We placed 2nd nationally in the CCDC wildcard round.',
+    body: 'Running Penn State\'s competitive cybersecurity club — competitions (CCDC, CPTC, Hivestorm), career fairs, and university liaison work. Previously Treasurer (2024–2025). We placed 2nd nationally in the CCDC wildcard round.',
     link: 'https://psuccso.org',
     linkLabel: 'psuccso.org',
   },
   {
-    title: 'Student Researcher @ HAX Lab',
+    title: 'Researcher @ HAX Lab',
     type: 'work',
-    body: 'Built the Use-Cases-Dashboard — a front-end tool that makes it easier to discover and navigate websites built with HAX. HTML, CSS, JavaScript. January–May 2025.',
+    body: 'Built the Use-Cases-Dashboard — a front-end tool that makes it easier to discover and navigate websites built with HAX. Designed the UI and streamlined navigation using HTML, CSS, and JavaScript. Jan–June 2025.',
+  },
+  {
+    title: 'Learning Assistant @ Penn State IST',
+    type: 'work',
+    body: 'TA for IST 140 (Java Fundamentals). ~10 hours/week of office hours and in-person instruction. Graded assignments, gave feedback, and coordinated with other LAs to support the professor. Sept 2024–Jan 2025.',
   },
   {
     title: 'Interests',
     type: 'focus',
-    body: 'Reverse engineering, SDR technology, CTF design, and defensive security. Also on the air at The LION 90.7FM and usually on a longboard when I\'m not at a keyboard.',
+    body: 'Reverse engineering, SDR technology, CTF design, and defensive security. On the air at The LION 90.7FM. Usually on a longboard when I\'m not at a keyboard.',
   },
 ]
 </script>
@@ -118,10 +123,10 @@ const entries = [
   margin: 1.75rem auto 2.5rem;
   border-radius: 14px;
   padding: 1.75rem 2rem 3rem;
-  color: #F0E0FF;
-  background: rgba(20, 0, 16, 0.92);
+  color: #F5DDE5;
+  background: rgba(14, 6, 10, 0.92);
   backdrop-filter: blur(18px);
-  border: 1px solid rgba(240, 220, 255, 0.10);
+  border: 1px solid rgba(200, 48, 96, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -135,7 +140,7 @@ const entries = [
   font-size: 0.48rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(240, 220, 255, 0.18);
+  color: rgba(200, 48, 96, 0.18);
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
@@ -156,13 +161,13 @@ const entries = [
   font-family: 'ttnp-round', sans-serif;
   font-size: clamp(3.5rem, 11vw, 8.5rem);
   font-weight: 900;
-  color: #7DFF00;
+  color: #C83060;
   line-height: 0.88;
   letter-spacing: -0.02em;
-  text-shadow: 4px 4px 0px rgba(125, 255, 0, 0.12);
+  text-shadow: 4px 4px 0px rgba(200, 48, 96, 0.12);
 }
 
-.title-dot { color: #F0E0FF; opacity: 0.4; }
+.title-dot { color: #F5DDE5; opacity: 0.4; }
 
 /* pill tags */
 .header-meta {
@@ -177,16 +182,16 @@ const entries = [
   font-size: 0.94rem;
   letter-spacing: 0.1em;
   text-transform: lowercase;
-  color: #F0E0FF;
+  color: #F5DDE5;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(240, 220, 255, 0.24);
+  border: 1px solid rgba(200, 48, 96, 0.25);
   border-radius: 999px;
   padding: 0.25rem 0.7rem;
 }
 
 .deco-star {
   font-size: 0.84rem;
-  color: #7DFF00;
+  color: #C83060;
   opacity: 0.65;
 }
 
@@ -202,7 +207,7 @@ const entries = [
   font-family: 'Courier New', Courier, monospace;
   font-size: 1.5rem;
   font-weight: 300;
-  color: rgba(240, 220, 255, 0.28);
+  color: rgba(200, 48, 96, 0.28);
   line-height: 1;
   flex-shrink: 0;
   margin-top: 0.2rem;
@@ -212,7 +217,7 @@ const entries = [
   font-family: 'ttnp-round', sans-serif;
   font-size: 0.9rem;
   line-height: 1.65;
-  color: rgba(240, 220, 255, 0.78);
+  color: rgba(245, 221, 229, 0.78);
 }
 
 /* ── Section divider ──────────────────────────────────── */
@@ -225,13 +230,13 @@ const entries = [
   font-size: 0.94rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(240, 220, 255, 0.52);
+  color: rgba(245, 221, 229, 0.52);
 }
 
 .div-line {
   flex: 1;
   height: 1px;
-  background: rgba(240, 220, 255, 0.20);
+  background: rgba(200, 48, 96, 0.22);
 }
 
 /* ── two-column entries grid ─────────────────────── */
@@ -244,7 +249,7 @@ const entries = [
 
 .entry-block {
   padding: 1.25rem 0 1.25rem 1rem;
-  border-left: 2px solid rgba(240, 220, 255, 0.14);
+  border-left: 2px solid rgba(200, 48, 96, 0.2);
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -252,7 +257,7 @@ const entries = [
 .entry-block:nth-child(even) { transform: rotate(0.25deg); }
 
 .entry-block:hover {
-  border-left-color: #7DFF00;
+  border-left-color: #C83060;
   transform: rotate(0deg);
 }
 
@@ -267,7 +272,7 @@ const entries = [
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.94rem;
   letter-spacing: 0.15em;
-  color: rgba(240, 220, 255, 0.52);
+  color: rgba(245, 221, 229, 0.52);
 }
 
 /* small type pill */
@@ -276,9 +281,9 @@ const entries = [
   font-size: 0.84rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(240, 220, 255, 0.64);
+  color: rgba(245, 221, 229, 0.64);
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(240, 220, 255, 0.18);
+  border: 1px solid rgba(200, 48, 96, 0.18);
   border-radius: 999px;
   padding: 0.15rem 0.5rem;
 }
@@ -287,7 +292,7 @@ const entries = [
   font-family: 'ttnp-round', sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
-  color: #F0E0FF;
+  color: #F5DDE5;
   line-height: 1.25;
   margin-bottom: 0.5rem;
 }
@@ -296,7 +301,7 @@ const entries = [
   font-family: 'ttnp-round', sans-serif;
   font-size: 0.875rem;
   line-height: 1.65;
-  color: rgba(240, 220, 255, 0.82);
+  color: rgba(245, 221, 229, 0.82);
   margin-bottom: 0.6rem;
 }
 
@@ -304,14 +309,14 @@ const entries = [
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.84rem;
   letter-spacing: 0.06em;
-  color: #7DFF00;
+  color: #C83060;
   text-decoration: none;
-  border-bottom: 1px solid rgba(125, 255, 0, 0.3);
+  border-bottom: 1px solid rgba(200, 48, 96, 0.35);
   padding-bottom: 0.1rem;
   transition: border-color 0.15s;
 }
 
-.entry-link:hover { border-bottom-color: #7DFF00; }
+.entry-link:hover { border-bottom-color: #C83060; }
 
 /* ── Bottom mark ──────────────────────────────────────── */
 .page-bottom {
@@ -321,12 +326,12 @@ const entries = [
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.94rem;
   letter-spacing: 0.15em;
-  color: rgba(240, 220, 255, 0.35);
+  color: rgba(245, 221, 229, 0.35);
   text-transform: uppercase;
 }
 
-.bottom-deco { color: #7DFF00; opacity: 0.5; font-size: 0.84rem; }
-.bottom-rule { flex: 1; height: 1px; background: rgba(240, 220, 255, 0.16); }
+.bottom-deco { color: #C83060; opacity: 0.5; font-size: 0.84rem; }
+.bottom-rule { flex: 1; height: 1px; background: rgba(200, 48, 96, 0.18); }
 
 /* ── Mobile ───────────────────────────────────────────── */
 @media (max-width: 700px) {

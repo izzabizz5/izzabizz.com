@@ -163,7 +163,163 @@ Takes a recipe URL and returns only the ingredients and steps. That's it.
 - Tailwind CSS
 - Docker for consistent deploys
 - GitHub Actions for CI/CD`
-  }
+  },
+  {
+    title: 'SDR GBM — LimeSDR & GNURadio CTF',
+    description: 'Led a CCSO general body meeting on Software Defined Radio using the LimeSDR and GNURadio, capped with a Caesar cipher + NATO phonetic alphabet CTF I wrote from scratch.',
+    slug: 'sdr-gbm-limesdr-gnuradio',
+    createdAt: '2026-03-01',
+    content: `Designed and ran a CCSO GBM centered on Software Defined Radio, covering how to transmit audio using the LimeSDR and GNURadio while staying within legal frequency bands and decibel limits.
+
+## The CTF twist
+
+I wrote a CTF storyline from scratch. Each letter of the flag was encoded with a Caesar cipher, then broadcast using the NATO phonetic (military) alphabet via the LimeSDR. Members had to intercept the transmission, decode the NATO phonetic to letters, then reverse the Caesar shift to get the flag. Also had walkie-talkies on hand for members to intercept and decode a separate transmitted message.
+
+## What members learned
+
+- LimeSDR hardware setup and GNURadio basics
+- Legal frequency band limits and decibel constraints
+- SDR signal transmission vs. reception
+- Applied cryptography (Caesar cipher, NATO alphabet)`
+  },
+  {
+    title: 'Internal Red vs. Blue Competition',
+    description: "Helped design and run CCSO's Internal Red vs. Blue — 3 teams, 30+ blue teamers, with C-Suite briefings, incident response reports, and timed injects.",
+    slug: 'internal-red-vs-blue',
+    createdAt: '2025-04-01',
+    content: `After a year of planning, CCSO ran its first Internal Red vs. Blue Competition. My main contributions were on the structure and inject side.
+
+## What I built
+
+- **Competition packet** — rules, environment overview, scoring breakdown, and task details distributed to all participants
+- **Injects** — designed and graded all timed inject submissions (business memos, IR reports, and technical tasks)
+- **Shadow participation program** — organized a track for students who were interested but not ready to compete, letting them observe, ask questions, and support teams without pressure
+
+## Format
+
+3 blue teams defending their systems against the red team simultaneously, with C-Suite roles played by faculty/staff to simulate real business pressure. Teams submitted inject responses within set windows throughout the day.`
+  },
+  {
+    title: 'Reverse Engineering GBM — Binary Ninja',
+    description: 'Co-led a CCSO GBM on reverse engineering using Binary Ninja as a decompiler, disassembler, debugger, and binary analysis platform, followed by internal CTF challenges.',
+    slug: 're-gbm-binary-ninja',
+    createdAt: '2025-04-16',
+    content: `Co-led a reverse engineering GBM with Aiden Johnson and Robert Roderick, walking members through Binary Ninja as a practical RE environment.
+
+## Topics covered
+
+- Using Binary Ninja as a decompiler, disassembler, debugger, and binary analysis platform
+- Navigating disassembly views and annotating code
+- Hands-on CTF challenges designed to introduce RE thinking to members at all skill levels`
+  },
+  {
+    title: 'SDR Meeting — RTL-SDR & SDR++',
+    description: 'Co-led a CCSO SDR meeting before spring break: RTL-SDR hardware, SDR++ software, FM radio theory, and an audio-based CTF.',
+    slug: 'sdr-meeting-rtlsdr',
+    createdAt: '2025-02-15',
+    content: `Co-led CCSO's SDR meeting with Aiden Johnson, introducing members to software-defined radio before spring break.
+
+## Topics covered
+
+- RTL-SDR hardware setup and SDR++ software walkthrough
+- FM radio fundamentals, frequency math, and imaginary numbers
+- GNU Radio introduction for more advanced SDR work
+
+## CTF
+
+Used SDR transmitters to hide messages in audio. Members tuned in and decoded the transmissions to find the flag.`
+  },
+  {
+    title: 'Blue Team Workshop — Email Server Setup',
+    description: 'Led a CCSO Blue Team workshop on building an internal email server with Postfix and Dovecot, then testing it by sending simulated phishing emails inside the lab.',
+    slug: 'blue-team-workshop-email-server',
+    createdAt: '2025-03-01',
+    content: `Led a Blue Team workshop on configuring a full internal email server from scratch, then attacking it.
+
+## What members built
+
+- **Postfix** for outgoing SMTP
+- **Dovecot** for incoming IMAP
+- **Thunderbird** integration to send and receive via a GUI
+
+## The twist
+
+Once the servers were up, members crafted and sent simulated phishing emails inside the lab to test their own configurations. Good way to understand how email infrastructure gets abused.`
+  },
+  {
+    title: 'Rotational GBM — Linux Station',
+    description: 'Led the Linux station at a four-rotation CCSO GBM, covering file permissions, special bits, and ACLs.',
+    slug: 'rotational-gbm-linux',
+    createdAt: '2024-10-01',
+    content: `Ran one of four stations at a rotational CCSO GBM — members cycled through Linux, lockpicking, Windows, and PicoCTF challenges.
+
+## Linux station content
+
+- File permissions (read, write, execute, octal notation)
+- Special bits: setuid, setgid, sticky bit
+- Access Control Lists (ACLs) with getfacl / setfacl
+
+Aimed at members who were brand new to Linux and needed a solid foundation before jumping into lab environments.`
+  },
+  {
+    title: 'Reverse Engineering GBM — DLLs & Unity',
+    description: 'Co-led a CCSO GBM on reverse engineering — assembly language, DLLs, and live demos modifying game behavior by patching binaries.',
+    slug: 're-gbm-dlls-unity',
+    createdAt: '2024-11-20',
+    content: `Co-led a reverse engineering GBM with Cy Fisher covering the foundational concepts behind RE.
+
+## Topics covered
+
+- Machine code, compilers, and assembly language
+- Dynamic Linked Libraries (DLLs) — what they are and how patching them changes program behavior
+- Binary types and formats
+
+## Demos
+
+- Modified DLLs in Getting Over It to demonstrate how patching affects runtime behavior
+- Members reverse-engineered a Unity game at the end of the session`
+  },
+  {
+    title: 'Cyber Mixer',
+    description: "Helped run CCSO's Cyber Mixer — 150+ students and industry reps from Deloitte, CrowdStrike, BD, Vanguard, Lockheed Martin, AWS, and more.",
+    slug: 'cyber-mixer',
+    createdAt: '2025-02-01',
+    content: `Helped organize CCSO's Cyber Mixer, one of our largest annual events.
+
+## Attendees
+
+150+ students connected with industry representatives from:
+Deloitte · BD · CrowdStrike · Vanguard · PwC · ARL Penn State · Lockheed Martin · AWS · Grant Thornton · Security Risk Advisors
+
+Penn State clubs C3, WiCys, FCA, and WiredIN also had tables to showcase their work.`
+  },
+  {
+    title: 'CYBER 100 Classroom Presentation',
+    description: 'Brought CCSO into two CYBER 100 classes for a club intro and hands-on PicoCTF activity spanning crypto, forensics, web exploitation, and reverse engineering.',
+    slug: 'cyber-100-presentation',
+    createdAt: '2024-09-01',
+    content: `Presented CCSO to two sections of CYBER 100 at Penn State — giving incoming students a first look at what competitive cybersecurity looks like.
+
+## Format
+
+After a short club introduction, students jumped into PicoCTF challenges across four categories:
+
+- Cryptography
+- Forensics
+- Web exploitation
+- Reverse engineering
+
+Good way to get people hooked early. A lot of students who came to the next GBM had found out about CCSO through this.`
+  },
+  {
+    title: 'Grace Hopper Conference',
+    description: 'Attended the Grace Hopper Conference in Philadelphia — networking with industry leaders and connecting with women in cybersecurity, sponsored by Penn State IST.',
+    slug: 'grace-hopper-2024',
+    createdAt: '2024-10-15',
+    content: `Attended the Grace Hopper Celebration in Philadelphia, one of the largest gatherings of women in computing.
+
+Penn State IST sponsored my attendance. Spent the conference networking with companies, talking to engineers and security researchers, and meeting other women in the field — a lot of whom were navigating the same intersection of security and law that I care about.`
+  },
 ]
 
 marked.setOptions({ gfm: true, breaks: true })
@@ -208,10 +364,10 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
   margin: 1.75rem auto 2.5rem;
   border-radius: 14px;
   padding: 1.75rem 2rem 3rem;
-  color: #F0E0FF;
-  background: rgba(20, 0, 16, 0.92);
+  color: #F5DDE5;
+  background: rgba(14, 6, 10, 0.92);
   backdrop-filter: blur(18px);
-  border: 1px solid rgba(240, 220, 255, 0.10);
+  border: 1px solid rgba(200, 48, 96, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -224,14 +380,14 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.84rem;
   letter-spacing: 0.1em;
-  color: rgba(240, 220, 255, 0.58);
-  border-bottom: 1px solid rgba(240, 220, 255, 0.20);
+  color: rgba(245, 221, 229, 0.58);
+  border-bottom: 1px solid rgba(200, 48, 96, 0.22);
   padding-bottom: 0.6rem;
   margin-bottom: 2rem;
 }
 
 .back-link {
-  color: rgba(240, 220, 255, 0.70);
+  color: rgba(245, 221, 229, 0.70);
   text-decoration: none;
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.84rem;
@@ -239,7 +395,7 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
   transition: color 0.15s;
 }
 
-.back-link:hover { color: #7DFF00; }
+.back-link:hover { color: #C83060; }
 .top-slug { opacity: 0.4; }
 
 /* ── Detail header (AQUA two-column) ─────────────────── */
@@ -257,7 +413,7 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.94rem;
   letter-spacing: 0.15em;
-  color: rgba(240, 220, 255, 0.58);
+  color: rgba(245, 221, 229, 0.58);
   text-transform: uppercase;
 }
 
@@ -265,10 +421,10 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
   font-family: 'ttnp-round', sans-serif;
   font-size: clamp(1.75rem, 5vw, 3.5rem);
   font-weight: 900;
-  color: #7DFF00;
+  color: #C83060;
   line-height: 1.05;
   letter-spacing: -0.02em;
-  text-shadow: 3px 3px 0px rgba(125, 255, 0, 0.12);
+  text-shadow: 3px 3px 0px rgba(200, 48, 96, 0.12);
 }
 
 .detail-header-right {
@@ -282,7 +438,7 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
   font-family: 'Courier New', Courier, monospace;
   font-size: 1.5rem;
   font-weight: 300;
-  color: rgba(240, 220, 255, 0.24);
+  color: rgba(200, 48, 96, 0.25);
   line-height: 1;
   flex-shrink: 0;
 }
@@ -291,7 +447,7 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
   font-family: 'ttnp-round', sans-serif;
   font-size: 0.875rem;
   line-height: 1.65;
-  color: rgba(240, 220, 255, 0.70);
+  color: rgba(245, 221, 229, 0.70);
 }
 
 /* ── Content divider ──────────────────────────────────── */
@@ -303,20 +459,20 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.94rem;
   letter-spacing: 0.15em;
-  color: rgba(240, 220, 255, 0.45);
+  color: rgba(245, 221, 229, 0.45);
   text-transform: uppercase;
 }
 
 .div-line {
   flex: 1;
   height: 1px;
-  background: rgba(240, 220, 255, 0.16);
+  background: rgba(200, 48, 96, 0.20);
 }
 
 /* ── Markdown content ─────────────────────────────────── */
 .project-content {
   max-width: 780px;
-  color: rgba(240, 220, 255, 0.88);
+  color: rgba(245, 221, 229, 0.88);
   font-family: 'ttnp-round', sans-serif;
   font-size: 1rem;
   line-height: 1.8;
@@ -328,30 +484,30 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
 .project-content h4 {
   font-family: 'Courier New', Courier, monospace;
   font-weight: 700;
-  color: #F0E0FF;
+  color: #F5DDE5;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-top: 2em;
   margin-bottom: 0.75em;
 }
 
-.project-content h1 { font-size: 1rem; color: #7DFF00; }
+.project-content h1 { font-size: 1rem; color: #C83060; }
 .project-content h2 { font-size: 0.94rem; }
-.project-content h3 { font-size: 0.72rem; color: rgba(240, 220, 255, 0.70); }
+.project-content h3 { font-size: 0.72rem; color: rgba(245, 221, 229, 0.70); }
 
 .project-content p { margin-bottom: 1.25em; }
 
-.project-content strong { color: #F0E0FF; font-weight: 700; }
+.project-content strong { color: #F5DDE5; font-weight: 700; }
 .project-content em { font-style: italic; }
 
 .project-content a {
-  color: #7DFF00;
+  color: #C83060;
   text-decoration: none;
-  border-bottom: 1px solid rgba(125, 255, 0, 0.3);
+  border-bottom: 1px solid rgba(200, 48, 96, 0.30);
   transition: border-color 0.15s;
 }
 
-.project-content a:hover { border-bottom-color: #7DFF00; }
+.project-content a:hover { border-bottom-color: #C83060; }
 
 .project-content ul,
 .project-content ol {
@@ -362,7 +518,7 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
 .project-content ul { list-style: none; }
 .project-content ul li::before {
   content: '→ ';
-  color: #7DFF00;
+  color: #C83060;
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.8em;
 }
@@ -371,16 +527,16 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
 .project-content li { margin-bottom: 0.4em; }
 
 .project-content blockquote {
-  border-left: 2px solid #7DFF00;
+  border-left: 2px solid #C83060;
   padding-left: 1rem;
   margin: 1.5em 0;
   font-style: italic;
-  color: rgba(240, 220, 255, 0.70);
+  color: rgba(245, 221, 229, 0.70);
 }
 
 .project-content pre {
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(240, 220, 255, 0.20);
+  border: 1px solid rgba(200, 48, 96, 0.22);
   padding: 1.25rem;
   margin: 1.5em 0;
   overflow-x: auto;
@@ -389,22 +545,22 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
 .project-content code {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.85em;
-  color: #7DFF00;
-  background: rgba(125, 255, 0, 0.1);
+  color: #C83060;
+  background: rgba(200, 48, 96, 0.10);
   padding: 0.15rem 0.35rem;
 }
 
 .project-content pre code {
   background: none;
   padding: 0;
-  color: rgba(240, 220, 255, 0.90);
+  color: rgba(245, 221, 229, 0.90);
 }
 
 /* ── States ───────────────────────────────────────────── */
 .loading-block {
   padding: 4rem 0;
   font-family: 'Courier New', Courier, monospace;
-  color: rgba(240, 220, 255, 0.58);
+  color: rgba(245, 221, 229, 0.58);
 }
 
 .loading-cursor { animation: blink 1s step-end infinite; }
@@ -418,10 +574,10 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
-  color: rgba(240, 220, 255, 0.70);
+  color: rgba(245, 221, 229, 0.70);
 }
 
-.error-label { color: #7DFF00; font-weight: 700; }
+.error-label { color: #C83060; font-weight: 700; }
 
 /* ── Bottom ───────────────────────────────────────────── */
 .page-bottom {
@@ -432,12 +588,12 @@ watch(() => route.params.slug, (v) => { if (v) loadProject() })
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.94rem;
   letter-spacing: 0.15em;
-  color: rgba(240, 220, 255, 0.35);
+  color: rgba(245, 221, 229, 0.35);
   text-transform: uppercase;
 }
 
-.bottom-deco { color: #7DFF00; opacity: 0.5; font-size: 0.84rem; }
-.bottom-rule { flex: 1; height: 1px; background: rgba(240, 220, 255, 0.14); }
+.bottom-deco { color: #C83060; opacity: 0.5; font-size: 0.84rem; }
+.bottom-rule { flex: 1; height: 1px; background: rgba(200, 48, 96, 0.18); }
 
 /* ── Mobile ───────────────────────────────────────────── */
 @media (max-width: 700px) {

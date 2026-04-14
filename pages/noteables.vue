@@ -156,10 +156,10 @@ const getCategoryCount = (id) => {
   margin: 1.75rem auto 2.5rem;
   border-radius: 14px;
   padding: 1.75rem 2rem 3rem;
-  color: #F0E0FF;
-  background: rgba(20, 0, 16, 0.92);
+  color: #F5DDE5;
+  background: rgba(14, 6, 10, 0.92);
   backdrop-filter: blur(18px);
-  border: 1px solid rgba(240, 220, 255, 0.10);
+  border: 1px solid rgba(200, 48, 96, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -173,7 +173,7 @@ const getCategoryCount = (id) => {
   font-size: 0.48rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(240, 220, 255, 0.18);
+  color: rgba(200, 48, 96, 0.18);
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
@@ -194,13 +194,13 @@ const getCategoryCount = (id) => {
   font-family: 'ttnp-round', sans-serif;
   font-size: clamp(2.5rem, 8vw, 6.5rem);
   font-weight: 900;
-  color: #7DFF00;
+  color: #C83060;
   line-height: 0.88;
   letter-spacing: -0.02em;
-  text-shadow: 3px 3px 0px rgba(125, 255, 0, 0.12);
+  text-shadow: 3px 3px 0px rgba(200, 48, 96, 0.12);
 }
 
-.title-dot { color: #F0E0FF; opacity: 0.35; }
+.title-dot { color: #F5DDE5; opacity: 0.35; }
 
 .header-tags {
   display: flex;
@@ -214,14 +214,14 @@ const getCategoryCount = (id) => {
   font-size: 0.94rem;
   letter-spacing: 0.1em;
   text-transform: lowercase;
-  color: #F0E0FF;
+  color: #F5DDE5;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(240, 220, 255, 0.24);
+  border: 1px solid rgba(200, 48, 96, 0.25);
   border-radius: 999px;
   padding: 0.25rem 0.7rem;
 }
 
-.deco-star { font-size: 0.84rem; color: #7DFF00; opacity: 0.65; }
+.deco-star { font-size: 0.84rem; color: #C83060; opacity: 0.65; }
 
 .header-right {
   display: flex;
@@ -234,7 +234,7 @@ const getCategoryCount = (id) => {
   font-family: 'Courier New', Courier, monospace;
   font-size: 1.5rem;
   font-weight: 300;
-  color: rgba(240, 220, 255, 0.28);
+  color: rgba(200, 48, 96, 0.28);
   line-height: 1;
   flex-shrink: 0;
 }
@@ -243,7 +243,7 @@ const getCategoryCount = (id) => {
   font-family: 'ttnp-round', sans-serif;
   font-size: 0.875rem;
   line-height: 1.65;
-  color: rgba(240, 220, 255, 0.70);
+  color: rgba(245, 221, 229, 0.70);
 }
 
 /* ── Filter bar (AQUA pill style) ─────────────────────── */
@@ -259,9 +259,9 @@ const getCategoryCount = (id) => {
   font-size: 0.82rem;
   letter-spacing: 0.1em;
   text-transform: lowercase;
-  color: rgba(240, 220, 255, 0.70);
+  color: rgba(245, 221, 229, 0.70);
   background: transparent;
-  border: 1px solid rgba(240, 220, 255, 0.24);
+  border: 1px solid rgba(200, 48, 96, 0.25);
   border-radius: 999px;
   padding: 0.28rem 0.75rem;
   cursor: pointer;
@@ -272,15 +272,15 @@ const getCategoryCount = (id) => {
 }
 
 .filter-pill:hover {
-  color: #F0E0FF;
-  border-color: rgba(240, 220, 255, 0.52);
-  background: rgba(240, 220, 255, 0.05);
+  color: #F5DDE5;
+  border-color: rgba(245, 221, 229, 0.52);
+  background: rgba(200, 48, 96, 0.05);
 }
 
 .filter-pill.active {
-  background: #7DFF00;
-  border-color: #7DFF00;
-  color: #0E000C;
+  background: #C83060;
+  border-color: #C83060;
+  color: #F5DDE5;
 }
 
 .pill-count {
@@ -298,13 +298,13 @@ const getCategoryCount = (id) => {
   font-size: 0.94rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(240, 220, 255, 0.52);
+  color: rgba(245, 221, 229, 0.52);
 }
 
 .div-line {
   flex: 1;
   height: 1px;
-  background: rgba(240, 220, 255, 0.20);
+  background: rgba(200, 48, 96, 0.22);
 }
 
 /* ── AQUA two-column quotes grid ──────────────────────── */
@@ -316,7 +316,7 @@ const getCategoryCount = (id) => {
 }
 
 .quote-block {
-  border-left: 2px solid rgba(240, 220, 255, 0.14);
+  border-left: 2px solid rgba(200, 48, 96, 0.2);
   padding-left: 1rem;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
@@ -325,7 +325,7 @@ const getCategoryCount = (id) => {
 .quote-block:nth-child(3n+2) { transform: rotate(0.3deg); }
 .quote-block:nth-child(3n+3) { transform: rotate(-0.2deg); }
 
-.quote-block:hover { border-left-color: #7DFF00; transform: rotate(0deg); }
+.quote-block:hover { border-left-color: #C83060; transform: rotate(0deg); }
 
 .quote-meta-row {
   display: flex;
@@ -338,7 +338,7 @@ const getCategoryCount = (id) => {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.72rem;
   letter-spacing: 0.15em;
-  color: rgba(240, 220, 255, 0.52);
+  color: rgba(245, 221, 229, 0.52);
 }
 
 .quote-type-pill {
@@ -351,17 +351,17 @@ const getCategoryCount = (id) => {
   border-radius: 999px;
 }
 
-.badge-book    { color: #7DFF00;       border-color: rgba(255, 0, 140, 0.45); }
-.badge-music   { color: #7DFF00;       border-color: rgba(125, 255, 0, 0.35); }
-.badge-film    { color: rgba(240, 220, 255, 0.78); border-color: rgba(240, 220, 255, 0.28); }
-.badge-article { color: #7DFF00;       border-color: rgba(180, 0, 120, 0.35); }
-.badge-other   { color: rgba(240, 220, 255, 0.64); border-color: rgba(240, 220, 255, 0.20); }
+.badge-book    { color: #E06882; border-color: rgba(200, 48, 96, 0.50); }
+.badge-music   { color: #F0A0B5; border-color: rgba(200, 48, 96, 0.35); }
+.badge-film    { color: rgba(245, 221, 229, 0.78); border-color: rgba(200, 48, 96, 0.25); }
+.badge-article { color: #C83060; border-color: rgba(200, 48, 96, 0.45); }
+.badge-other   { color: rgba(245, 221, 229, 0.64); border-color: rgba(200, 48, 96, 0.18); }
 
 .quote-text {
   font-family: 'ttnp-round', sans-serif;
   font-size: 0.95rem;
   line-height: 1.7;
-  color: #F0E0FF;
+  color: #F5DDE5;
   font-style: italic;
   margin-bottom: 0.75rem;
 }
@@ -370,7 +370,7 @@ const getCategoryCount = (id) => {
   font-size: 1.2em;
   line-height: 0;
   vertical-align: -0.15em;
-  color: #7DFF00;
+  color: #C83060;
   font-style: normal;
 }
 
@@ -383,21 +383,21 @@ const getCategoryCount = (id) => {
 
 .attr-dash {
   font-family: 'ttnp-round', sans-serif;
-  color: rgba(240, 220, 255, 0.45);
+  color: rgba(245, 221, 229, 0.45);
 }
 
 .attr-author {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.84rem;
   letter-spacing: 0.06em;
-  color: rgba(240, 220, 255, 0.88);
+  color: rgba(245, 221, 229, 0.88);
   text-transform: uppercase;
 }
 
 .attr-source {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.94rem;
-  color: rgba(240, 220, 255, 0.38);
+  color: rgba(245, 221, 229, 0.38);
   font-style: italic;
 }
 
@@ -413,9 +413,9 @@ const getCategoryCount = (id) => {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.84rem;
   letter-spacing: 0.12em;
-  color: rgba(240, 220, 255, 0.52);
-  background: rgba(240, 220, 255, 0.06);
-  border: 1px solid rgba(240, 220, 255, 0.20);
+  color: rgba(245, 221, 229, 0.52);
+  background: rgba(200, 48, 96, 0.07);
+  border: 1px solid rgba(200, 48, 96, 0.22);
   border-radius: 999px;
   padding: 0.35rem 1rem;
   text-transform: lowercase;
@@ -429,12 +429,12 @@ const getCategoryCount = (id) => {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.94rem;
   letter-spacing: 0.15em;
-  color: rgba(240, 220, 255, 0.35);
+  color: rgba(245, 221, 229, 0.35);
   text-transform: uppercase;
 }
 
-.bottom-deco { color: #7DFF00; opacity: 0.5; font-size: 0.84rem; }
-.bottom-rule { flex: 1; height: 1px; background: rgba(240, 220, 255, 0.14); }
+.bottom-deco { color: #C83060; opacity: 0.5; font-size: 0.84rem; }
+.bottom-rule { flex: 1; height: 1px; background: rgba(200, 48, 96, 0.2); }
 
 /* ── Transitions ──────────────────────────────────────── */
 .quote-fade-enter-active,

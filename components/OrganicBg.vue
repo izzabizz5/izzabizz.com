@@ -12,35 +12,35 @@
         </filter>
       </defs>
 
-      <!-- Very dark magenta-black base -->
-      <rect width="1920" height="1080" fill="#0E000C"/>
+      <!-- Very dark plum-black base — flower photo shadow -->
+      <rect width="1920" height="1080" fill="#0A0810"/>
 
-      <!-- Organic blobs — deep magenta, wine, hot pink -->
+      <!-- Organic blobs — deep rose, wine-plum, dusty mauve, purple-blue bokeh -->
       <g filter="url(#liq)">
-        <!-- Deep wine, lower-left mass -->
-        <circle cx="200"  cy="820"  r="540" fill="#5A0038"/>
-        <!-- Muted magenta, center-left -->
-        <circle cx="560"  cy="440"  r="480" fill="#9C0055"/>
-        <!-- Dark purple, upper-right -->
-        <circle cx="1480" cy="240"  r="500" fill="#4A0040"/>
-        <!-- Wine-magenta, lower-right -->
-        <circle cx="1580" cy="820"  r="440" fill="#780040"/>
-        <!-- Bright magenta, center -->
-        <circle cx="920"  cy="560"  r="380" fill="#B8005A"/>
-        <!-- Deep purple, far right -->
-        <circle cx="1820" cy="480"  r="360" fill="#380030"/>
-        <!-- Hot pink, top-center -->
-        <circle cx="840"  cy="120"  r="300" fill="#A00050"/>
-        <!-- Dark magenta, center-right -->
-        <circle cx="1240" cy="680"  r="320" fill="#480038"/>
-        <!-- Soft pink highlight, upper-left -->
-        <circle cx="280"  cy="200"  r="280" fill="#C8005E" opacity="0.70"/>
-        <!-- Warm wine, lower-center -->
-        <circle cx="1060" cy="960"  r="320" fill="#620040" opacity="0.85"/>
-        <!-- Muted rose, top-right -->
-        <circle cx="1680" cy="120"  r="240" fill="#8A004C" opacity="0.80"/>
-        <!-- Deep pink accent -->
-        <circle cx="700"  cy="900"  r="260" fill="#900048" opacity="0.70"/>
+        <!-- Deep wine-plum, lower-left mass -->
+        <circle cx="200"  cy="820"  r="540" fill="#3A0820"/>
+        <!-- Mid rose, center-left -->
+        <circle cx="560"  cy="440"  r="480" fill="#8A1840"/>
+        <!-- Purple-blue bokeh, upper-right -->
+        <circle cx="1480" cy="240"  r="500" fill="#2A1848"/>
+        <!-- Wine-rose, lower-right -->
+        <circle cx="1580" cy="820"  r="440" fill="#601028"/>
+        <!-- Bright rose, center — primary flower color -->
+        <circle cx="920"  cy="560"  r="380" fill="#A82048"/>
+        <!-- Deep indigo, far right — bokeh shadow -->
+        <circle cx="1820" cy="480"  r="360" fill="#1A1038"/>
+        <!-- Dusty rose, top-center -->
+        <circle cx="840"  cy="120"  r="300" fill="#901838"/>
+        <!-- Dark mauve, center-right -->
+        <circle cx="1240" cy="680"  r="320" fill="#400818"/>
+        <!-- Warm rose highlight, upper-left -->
+        <circle cx="280"  cy="200"  r="280" fill="#C02850" opacity="0.70"/>
+        <!-- Deep plum, lower-center -->
+        <circle cx="1060" cy="960"  r="320" fill="#501020" opacity="0.85"/>
+        <!-- Purple bokeh, top-right -->
+        <circle cx="1680" cy="120"  r="240" fill="#3A2060" opacity="0.80"/>
+        <!-- Muted rose accent -->
+        <circle cx="700"  cy="900"  r="260" fill="#781830" opacity="0.70"/>
       </g>
 
       <!-- Bubble layer -->
@@ -78,26 +78,26 @@
 <script setup>
 const bubbles = [
   // Large
-  { cx: 325,  cy: 182,  r: 118, fill: 'rgba(200,0,100,0.18)'   },
-  { cx: 825,  cy: 418,  r: 95,  fill: 'rgba(255,255,255,0.07)' },
-  { cx: 1285, cy: 288,  r: 128, fill: 'rgba(180,0,90,0.16)'    },
-  { cx: 482,  cy: 698,  r: 86,  fill: 'rgba(220,0,120,0.14)'   },
-  { cx: 1102, cy: 772,  r: 108, fill: 'rgba(255,255,255,0.07)' },
-  { cx: 1648, cy: 518,  r: 90,  fill: 'rgba(160,0,80,0.18)'    },
+  { cx: 325,  cy: 182,  r: 118, fill: 'rgba(200,48,90,0.18)'    },
+  { cx: 825,  cy: 418,  r: 95,  fill: 'rgba(245,220,232,0.06)' },
+  { cx: 1285, cy: 288,  r: 128, fill: 'rgba(88,96,168,0.16)'   },
+  { cx: 482,  cy: 698,  r: 86,  fill: 'rgba(180,32,72,0.14)'   },
+  { cx: 1102, cy: 772,  r: 108, fill: 'rgba(245,220,232,0.06)' },
+  { cx: 1648, cy: 518,  r: 90,  fill: 'rgba(64,40,96,0.18)'    },
   // Medium
-  { cx: 172,  cy: 492,  r: 58,  fill: 'rgba(255,255,255,0.10)' },
-  { cx: 658,  cy: 192,  r: 52,  fill: 'rgba(200,0,100,0.20)'   },
-  { cx: 948,  cy: 145,  r: 64,  fill: 'rgba(255,255,255,0.08)' },
-  { cx: 1402, cy: 168,  r: 46,  fill: 'rgba(180,0,90,0.20)'    },
-  { cx: 238,  cy: 775,  r: 54,  fill: 'rgba(200,0,100,0.16)'   },
-  { cx: 872,  cy: 618,  r: 60,  fill: 'rgba(255,255,255,0.08)' },
-  { cx: 1188, cy: 565,  r: 45,  fill: 'rgba(160,0,80,0.14)'    },
-  { cx: 1722, cy: 358,  r: 52,  fill: 'rgba(140,0,70,0.18)'    },
-  { cx: 592,  cy: 858,  r: 48,  fill: 'rgba(255,255,255,0.08)' },
-  { cx: 1462, cy: 822,  r: 58,  fill: 'rgba(200,0,100,0.16)'   },
-  { cx: 1052, cy: 342,  r: 43,  fill: 'rgba(180,0,90,0.16)'    },
-  { cx: 388,  cy: 548,  r: 50,  fill: 'rgba(255,255,255,0.10)' },
-  { cx: 128,  cy: 288,  r: 36,  fill: 'rgba(200,0,100,0.20)'   },
+  { cx: 172,  cy: 492,  r: 58,  fill: 'rgba(245,220,232,0.08)' },
+  { cx: 658,  cy: 192,  r: 52,  fill: 'rgba(200,48,90,0.20)'   },
+  { cx: 948,  cy: 145,  r: 64,  fill: 'rgba(245,220,232,0.07)' },
+  { cx: 1402, cy: 168,  r: 46,  fill: 'rgba(88,96,168,0.20)'   },
+  { cx: 238,  cy: 775,  r: 54,  fill: 'rgba(200,48,90,0.16)'   },
+  { cx: 872,  cy: 618,  r: 60,  fill: 'rgba(245,220,232,0.07)' },
+  { cx: 1188, cy: 565,  r: 45,  fill: 'rgba(160,32,64,0.14)'   },
+  { cx: 1722, cy: 358,  r: 52,  fill: 'rgba(64,40,96,0.18)'    },
+  { cx: 592,  cy: 858,  r: 48,  fill: 'rgba(245,220,232,0.07)' },
+  { cx: 1462, cy: 822,  r: 58,  fill: 'rgba(200,48,90,0.16)'   },
+  { cx: 1052, cy: 342,  r: 43,  fill: 'rgba(88,96,168,0.16)'   },
+  { cx: 388,  cy: 548,  r: 50,  fill: 'rgba(245,220,232,0.09)' },
+  { cx: 128,  cy: 288,  r: 36,  fill: 'rgba(200,48,90,0.20)'   },
   // Small
   { cx: 442,  cy: 322,  r: 28 },
   { cx: 722,  cy: 558,  r: 22 },
